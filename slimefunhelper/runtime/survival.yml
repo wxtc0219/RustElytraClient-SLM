@@ -1,0 +1,188 @@
+schedular-settings:
+  engin-type: enum:schedular_engine_type:BARITONE
+  replenish: true
+  discharge: true
+  inv-speed-limit: 27
+  hotbar-protect: 0
+  scann-chest-range: nbt:vec3:{x:20.0d,y:5.0d,z:20.0d}
+  enable-auto-expand-shulker: true
+  enable-auto-expand-chest: false
+  enable-container-hot-reload: false
+  warn: true
+  detailed-log: false
+  pause: false
+  pause-hotkey: 'hotkey:'
+  hold-reset: 'hotkey:'
+  enable-render: true
+  replenishment-color: nbt:wrapcolor:"blue"
+  discharge-color: nbt:wrapcolor:"red"
+  shulker-support-color: nbt:wrapcolor:"yellow"
+  goal-color: nbt:wrapcolor:"green"
+  color-lines: nbt:wrapcolor:"aqua"
+render-utils:
+  villager-esp:
+    enable: false
+    hotkey: 'hotkey:'
+    text-scale: 0.75
+    color: nbt:wrapcolor:"aqua"
+  pearl-esp:
+    enable: false
+    hotkey: 'hotkey:'
+    text-scale: 0.75
+    color: nbt:wrapcolor:"aqua"
+  trial-esp:
+    enable: false
+    hotkey: 'hotkey:'
+    text-scale: 0.75
+    color: nbt:wrapcolor:"aqua"
+    color2: nbt:wrapcolor:"red"
+    trace-option: nbt:tracingoption:{box:1b,line:0b}
+    render-enter-position: false
+    misc-color: nbt:wrapcolor:"yellow"
+world-manager:
+  enable-entity: true
+  enable-block-entities: true
+survival-mine-utils:
+  block-farm:
+    enable: false
+    hotkey: 'hotkey:'
+    delay: 6
+    multiply: 9
+    white-list-enable: false
+    white-list: nbt:entryset:{data:["minecraft:ender_chest","minecraft:bookshelf"],key_type:"minecraft:item"}
+    swing-hand: true
+    render: false
+  aaxray-simple:
+    enable: false
+    hotkey: 'hotkey:'
+    packet-limit: 30
+    legal: false
+    rotate: false
+  aaxray-seed-ore:
+    enable: false
+    chunk-radius: 6
+    render-ore: false
+    enable-fake-ore: false
+    ore-white-list: ^(diamond)$
+  auto-librarian:
+    enable: false
+    hotkey: 'hotkey:'
+    enchantments: nbt:weakentryprimitivemap:{data:[{key:'weakholder|"minecraft:enchantment|minecraft:mending"',value:"int|1"}],default_key_primitive:'weakholder|"minecraft:enchantment|minecraft:default"',key_type:"weakholder",value_type:"int"}
+    only-max-leve: true
+    log: false
+    work-station-down-block: nbt:entryset:{data:["minecraft:magma_block","minecraft:oak_fence"],key_type:"minecraft:block"}
+    auto-lock-trade: false
+    auto-removal: false
+    baritone-control: false
+    adjustment-control: false
+    render: false
+    render-color: nbt:wrapcolor:"green"
+survival-interact-utils:
+  auto-breed:
+    enable: false
+    hotkey: 'hotkey:'
+    enable-baritone: false
+    enable-breed: false
+    enable-feed-baby: false
+    baby-feed-limit: 3
+    render: false
+    render-color: nbt:wrapcolor:"green"
+    render-pen-color: nbt:wrapcolor:"yellow"
+    render-other-animal-color: nbt:wrapcolor:"aqua"
+    entity-whitelist: nbt:entitytyperegex:"^(turtle)$"
+survival-move-utils:
+  walk-control:
+    enable: false
+    hotkey: 'hotkey:'
+    forward: false
+    jump: false
+    sneak: false
+    mode: enum:walk_control_mode:NONE
+    long-press-reset: nbt:optionalprimitive:{present:1b,value:"int|25"}
+    auto-jump: false
+travelling-control:
+  search-control:
+    enable: false
+    hotkey: 'hotkey:'
+    search-mode: enum:search_control_look_mode:SPIRAL
+    center-pos: nbt:pos3:{x:0,y:0,z:0}
+    range-spiral: 32.0
+    range-rect: 192.0
+    range-circle: 192.0
+    abort-wasd: false
+    fly-only: false
+    max-distance: 3.0E8
+    out-max-log: false
+  search-label:
+    enable: false
+    hotkey: 'hotkey:'
+    enable-important-blocks: false
+    important-blocks: nbt:entryset:{data:["minecraft:chest","minecraft:shulker_box"],key_type:"minecraft:block"}
+    block-counts: 8
+    instant-blocks: nbt:entryset:{data:["minecraft:shulker_box","minecraft:crafter","minecraft:ender_chest"],key_type:"minecraft:block"}
+    enable-important-items: false
+    important-items: nbt:entryset:{data:["minecraft:elytra","minecraft:filled_map","minecraft:shulker_box"],key_type:"minecraft:item"}
+    item-counts: 1
+    enable-important-entities: false
+    important-entities: nbt:entryset:{data:["minecraft:player","minecraft:chest_minecart","minecraft:hopper_minecart"],key_type:"minecraft:entity_type"}
+    entity-counts: 4
+    instant-entities: nbt:entryset:{data:["minecraft:minecart","minecraft:hopper_minecart"],key_type:"minecraft:entity_type"}
+    label-in-world-map: true
+    notify-when-update-label: false
+    log-when-update-label: false
+    ignore-structures: false
+    remove-if-close-to-target: false
+    sound-when-update-label: false
+    sound: nbt:holder:"minecraft:sound_event|slimefunhelper:event.search-label.notify"
+  path-manager:
+    auto-write-distance: 80.0
+    render: false
+    rerun-mode: enum:path_manager_flight_mode:ELYTRA_FLIGHT
+    goal-distance: 400.0
+baritone:
+  fix:
+    add-baritone-mine-cooldown-override: false
+    apply-mine-settings-to-baritone: false
+    dimension-fix: false
+    auto-import-seed: true
+    emergency-landing-fix: false
+    disable-inventory-check: false
+    enable-inventory-fireworks: false
+    enable-firework-swap: true
+    enable-baritone-command-protect: true
+    change-landing-to-elytra-flight: false
+    auto-jump-fix: false
+    change-landing-to-log: false
+    baritone-conditional-pause: false
+    baritone-force-pause: false
+    baritone-pause-hotkey: 'hotkey:'
+    fix-baritone-simulate-error: false
+    fix-when-fail-calculate: false
+    baritone-experiment-1: false
+    baritone-experiment-height-1: 36.0
+    baritone-experiment-2: false
+    exp-2-min-height: 38.0
+    exp-2-max-height: 42.0
+xaero-map-extra:
+  xaero-helper:
+    loaded-chunk-render: false
+    loaded-chunk-render-color: nbt:wrapcolor:"red"
+    xplus-baritone-elytra-path-fix: false
+    enable-xaero-right-click-command: false
+    xaero-right-click-command-list: nbt:primitivelist:{data:['stringformat|{arguments:["world","pos","pos_str","x","y","z"],format:"/tp
+      {pos}"}','stringformat|{arguments:["world","pos","pos_str","x","y","z"],format:"/!!travel
+      to {pos}"}'],default_primitive:'stringformat|{arguments:["world","pos","pos_str","x","y","z"],format:""}',element_type:"stringformat"}
+    xaero-right-click-suggest-list: nbt:primitivelist:{data:[],default_primitive:'stringformat|{arguments:["world","pos","pos_str","x","y","z"],format:""}',element_type:"stringformat"}
+    travel-goal-sync: false
+    transparent-gui-map-fix: false
+    add-chat-input-in-gui-map: false
+  xaero-scanner:
+    enable: false
+    hotkey: 'hotkey:'
+    chunk-range: 24
+    reschedule-range: 8
+    mode: enum:xaero_map_scanner_mode:LIQUID
+    use-inverse-new-chunks: false
+    new-chunk-ratio: 0.25
+    render: true
+    render-color: nbt:wrapcolor:"red"

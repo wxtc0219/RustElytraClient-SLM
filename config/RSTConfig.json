@@ -1,0 +1,16 @@
+{
+  "FirstUse": false,
+  "isAutoLog": true,
+  "isAutoLogOnSeg1": false,
+  "DisplayDebug": false,
+  "inspectArmor": false,
+  "verboseDisplayDebug": false,
+  "FoodIndex": 4,
+  "autoLogEnabled": true,
+  "HudX": 0,
+  "HudY": 0,
+  "enableHud": true,
+  "elytraPredictTerrain": true,
+  "netherSeed": -7346913998703726680,
+  "elytraFireworkSpeed": 1.2
+}

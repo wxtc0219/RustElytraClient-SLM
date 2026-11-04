@@ -1,0 +1,64 @@
+chat-helper:
+  ignore-chat-len-limit: false
+  escape-trim-chat: false
+  escape-normalize-space-chat: false
+  check-chat-len: false
+  chat-len-limit: 256
+  check-command-len: false
+  command-len-limit: 32760
+  limit-warn-format: '&c你的输入内容太长了! %d / %d'
+  override-chat-history-len: false
+  chat-history-len: 100
+  add-to-history-when-close: false
+  dont-send-empty-message: false
+  enable-tab-fix: false
+  enable-chat-message-format: false
+  chat-message-format-str: nbt:stringformat:{arguments:["message","random+数字"],format:"{message}喵
+    | WurstV91 client | {random6}"}
+  chat-message-escape-format: nbt:regex:"^()$"
+  chat-box-in-gui: false
+  chat-box-in-any-screen: false
+  chat-box-other-pos: nbt:widgetpos:{lengthX:0,lengthY:0,percentageX:0.5d,percentageY:1.0d,type:0}
+  chat-box-other-length: 100.0
+chat-screen-tools:
+  login-command-pattern: nbt:regex:"^(/login|/l|/reg|/register|/changepass|/changepassword)
+    (.+)$"
+  password-encrypt: false
+  password-encrypt-length: 20
+  password-encrypt-salt: ''
+  enable-tools: false
+  enable-quick-chars: false
+  quick-chars: 😡🤓🥵😭🤡😋🤤😊😄🥲😁👉👆🤔😎🐍😅♂♀
+  cached: ''
+  auto-chat: false
+  auto-chat-period: 21
+  auto-chat-multiple: 1
+  keep-chat-inv: false
+  obf-login-message: false
+  remove-command-prefix-hotkey: 'hotkey:'
+client-side-command:
+  client-side-command-override: true
+  client-side-give: false
+chat-combine:
+  enable: false
+encrypt-chat:
+  encrypt-message-out: false
+  decrypt-message-in: false
+  encrypt-prefix: ''
+  decrypt-ignore-suffix: 喵
+  encrypt-command-message-pattern: nbt:regex:"^/(minecraft:)?(msg|say|me) ([^\\s]+)
+    (.*)$"
+player-chat:
+  game-message-as-player-message:
+  - ^.*\[([^\]\[\s]+)\]\s*[:➟→»》]\s*(.*)$
+  - ^.*\[[^\]\[]+\].* ([^\]\[\s]+)\s*[:➟→»》]\s*(.*)$
+  - ^.*<([^><\s]+)>\s*[:➟→»》]\s*(.*)$
+  - ^.*《([^》《\s]+)》\s*[:➟→»》]\s*(.*)$
+  - ^.*«([^»«\s]+)»\s+(.*)$
+  detect-all-message-with-player-names: false
+  append-time-stamp: false
+  append-chat-head: false
+chat-spam-fix:
+  enable: false
+  regex-list: nbt:regexlist:[]
+  log-hidden-messages: false

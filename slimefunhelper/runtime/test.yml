@@ -1,0 +1,160 @@
+other:
+  no-client-crash: false
+  client-crash-keep-in-server: false
+  no-entity-crash: false
+  no-block-entity-crash: false
+  no-disconnect-on-network-error: false
+  no-disconnect-on-packet-decode: false
+  no-disconnect-on-packet-unexpected: false
+  keep-gui-open-on-portal: false
+  client-brand-name: ''
+  cursor-switch-hotkey: 'hotkey:'
+  create-blank-transparent-screen: 'hotkey:'
+  fix-palette-exception: false
+  log-self-server-leaving: false
+  enable-beacon-enhance: false
+  enable-ender-eye-log: false
+  gui-fix:
+    disable-terrain-load-screen: false
+    optimize-game-menu: true
+    optimize-server-screen: true
+  server-scanner:
+    enable: true
+  auto-reconnect:
+    enable: false
+    enable-buttons: false
+    delay: 5
+  anti-afk:
+    enable: false
+    hotkey: 'hotkey:'
+    move: false
+    jump: false
+    swing: false
+    rotate: false
+    delay: 1200
+  boat-vclip:
+    enable: false
+    hotkey: 'hotkey:'
+  skin-blink:
+    enable: false
+    hotkey: 'hotkey:'
+    delay: 20
+    switch-model: true
+    switch-model-parts: nbt:playermodelpartselectset:[{key:"CAPE",value:0b},{key:"JACKET",value:0b},{key:"LEFT_SLEEVE",value:0b},{key:"RIGHT_SLEEVE",value:0b},{key:"LEFT_PANTS_LEG",value:0b},{key:"RIGHT_PANTS_LEG",value:0b},{key:"HAT",value:0b}]
+    switch-arm: false
+  queue-notify:
+    enable: false
+    hotkey: 'hotkey:'
+    mode: enum:notify_type:TRAY
+    min-only: false
+    min-width: 0.0
+    enable-queue: false
+    queue-3c-title-regex: nbt:regex:".*(正在游玩.*队列位置|Position.*queue)[：:]\\s*(\\d+)"
+    order: nbt:intprimitivelist:"5,10"
+    enable-disconnect-server: false
+    enable-pop-totem: false
+    enable-baritone-end: false
+  fake-player:
+    name: juhaoshabi666
+    has-physics: false
+    copy-equipment: false
+    max-health: 20.0
+    auto-totem: false
+    regeneration: false
+    override-effects: false
+    constant-effects: nbt:entryprimitivemap:{data:[],default_key_primitive:"holder|minecraft:mob_effect|minecraft:default",key_type:"holder",value_type:"int"}
+    log-hit: false
+    hit-format: nbt:stringformat:{arguments:["name","damage_type","damage","final_damage"],color_str:1b,format:"&f{name}
+      was hit, hp-{final_damage}"}
+  fake-lag:
+    enable: false
+    hotkey: 'hotkey:'
+    delay-ms: 25
+  sound-notify:
+    enable: false
+    entity-log:
+      player-enter-range: false
+      player-leave-range: false
+      sound: nbt:holder:"minecraft:sound_event|slimefunhelper:event.entity-log.notify"
+    totem:
+      self-pop: false
+      other-pop: false
+      sound: nbt:holder:"minecraft:sound_event|slimefunhelper:event.totem.notify"
+    effect-warn:
+      enable: false
+      effects: nbt:entryset:{data:[],key_type:"minecraft:mob_effect"}
+      duration-ticks: 200
+      sound: nbt:holder:"minecraft:sound_event|slimefunhelper:event.effect-warn.notify"
+    message-detection:
+      enable: false
+      keywords: [
+        ]
+      private-message-sound: false
+      sound: nbt:holder:"minecraft:sound_event|slimefunhelper:event.message-detection.notify"
+    item-search:
+      enable: false
+      important-items: nbt:entryset:{data:["minecraft:netherite_axe","minecraft:golden_apple","minecraft:shulker_spawn_egg","minecraft:black_shulker_box","minecraft:firework_star","minecraft:nether_star","minecraft:pink_shulker_box","minecraft:gray_shulker_box","minecraft:netherite_hoe","minecraft:light_gray_shulker_box","minecraft:elytra","minecraft:cyan_shulker_box","minecraft:lime_shulker_box","minecraft:splash_potion","minecraft:lingering_potion","minecraft:netherite_boots","minecraft:purple_shulker_box","minecraft:trident","minecraft:netherite_helmet","minecraft:experience_bottle","minecraft:netherite_ingot","minecraft:netherite_block","minecraft:yellow_shulker_box","minecraft:skeleton_skull","minecraft:netherite_leggings","minecraft:netherite_upgrade_smithing_template","minecraft:netherite_shovel","minecraft:red_shulker_box","minecraft:end_crystal","minecraft:shulker_box","minecraft:potion","minecraft:mace","minecraft:totem_of_undying","minecraft:wither_skeleton_skull","minecraft:brown_shulker_box","minecraft:netherite_pickaxe","minecraft:netherite_chestplate","minecraft:netherite_sword","minecraft:green_shulker_box","minecraft:enchanted_golden_apple","minecraft:blue_shulker_box","minecraft:respawn_anchor","minecraft:magenta_shulker_box","minecraft:light_blue_shulker_box","minecraft:obsidian","minecraft:shulker_shell","minecraft:white_shulker_box","minecraft:netherite_scrap","minecraft:orange_shulker_box"],key_type:"minecraft:item"}
+      sound: nbt:holder:"minecraft:sound_event|slimefunhelper:event.item-search.notify"
+    durability:
+      enable: false
+      threshold: 10
+      threshold-percentage: 0.1
+      sound: nbt:holder:"minecraft:sound_event|slimefunhelper:event.durability.notify"
+    baritone:
+      landing: false
+      sound: nbt:holder:"minecraft:sound_event|slimefunhelper:event.baritone.notify"
+    attack:
+      client-mace: false
+      server-mace: false
+      sound: nbt:holder:"minecraft:sound_event|slimefunhelper:event.attack.notify"
+packet-debugger:
+  enable: false
+  hotkey: 'hotkey:'
+  debug-packet-in: false
+  debug-packet-out: false
+  debug-click-actions: false
+  debug-via-packet: false
+  debug-packet-type: ^(move_player_.*)$
+  debug-time: false
+  stop-debug-in-chat: false
+  intercept-packet: false
+  intercept-packet-type: ^()$
+bad-packets:
+  fix-dup-sprint: true
+  fix-dup-sneak: true
+  fix-dup-input: true
+  exempt-dup-rot: true
+  filter-dup-rot: false
+  fix-fly-packets: true
+  fix-dup-rot: true
+  fix-full-dup-rot: false
+  fix-illegal-server-view-distance: true
+  fix-bad-block-tags: true
+  fix-litematica-transmit: true
+  fix-invalid-player-entry-update: false
+auto-logout:
+  enable: false
+  hotkey: 'hotkey:'
+  health:
+    enable: false
+    threshold: 4
+  totem-left:
+    enable: false
+    threshold: 1
+  totem-trigger:
+    enable: false
+    threshold: 99
+  min-height:
+    enable: false
+    threshold: 256
+  stranger-player:
+    enable: false
+disablers:
+  enable: true
+  hotkey: 'hotkey:'
+  current-ac: enum:support_disabler_ac:NONE
+  grim-self-check: false
+  grim-multi-place: true
+  auto-flush-multi-place-queue: true
+  auto-flush-place-break-queue: true
+  grim-multi-place-fix: false

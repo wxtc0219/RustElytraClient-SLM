@@ -1,0 +1,274 @@
+move-safety:
+  grimac-1-21-2-input-features: false
+  grimac-sprint-features: true
+  disable-stepheight-feature: false
+  flight:
+    toggle-flying: 'hotkey:'
+    flight-enable: false
+    flight-enable-hotkey: 'hotkey:'
+    flight-mode: enum:flight_mode:CREATIVE
+    flight-mode-switch-hotkey: 'hotkey:'
+    antikick: true
+    antikick-period: 60
+    onground-when-mine: false
+  no-fall:
+    toggle: false
+    hotkey: 'hotkey:'
+    bypass-mode: enum:no_fall_bypass_mode:LAZY_MODE
+    safe-distance-modify: 0
+    equipment-id-bypass-nofall: nbt:regex:"^(SLIME.*_BOOTS)$"
+    disable-when-allow-flying: true
+  no-ground:
+    enable: false
+    hotkey: 'hotkey:'
+    mode: enum:no_ground_mode:NONE
+  log-resync-packets: false
+  log-resync-format: nbt:stringformat:{arguments:["position"],color_str:1b,format:"&fPos
+    Resync {position}"}
+  check-setback-packets: false
+  log-ac-format: 'nbt:stringformat:{arguments:["teleportId","position"],color_str:1b,format:"&c[AC]
+    反作弊回弹! tp号:{teleportId}, 位置: {position}"}'
+  auto-resync-rotation: false
+  auto-resync-rot-modify-packet: false
+  auto-resync-velocity: false
+  auto-resync-pos: false
+  auto-resync-distance: 10.0
+  log-auto-resync-request: false
+  auto-resync-request-expire-tick: 10
+  auto-resync-request-recursively: false
+  anti-chunk-lag:
+    enable: false
+    hotkey: 'hotkey:'
+    predict-velocity: 48
+    freeze-when-lag: false
+    log-to-player: false
+  enhance-stepheight: false
+  anti-liquid:
+    enable: false
+    hotkey: 'hotkey:'
+    mode: enum:anti_liquid_anti_liquid_mode:NONE
+    water-expand-check: 0.2
+    enable-not-fly: false
+    enable-fly: false
+    auto-armor-fly-control: false
+    auto-armor-fly-switch-gt: 5
+    leave-water-expand-check: 2.0
+quick-move:
+  quick-move: 'hotkey:'
+  quick-to-wall: 'hotkey:'
+  max-distance: 120.0
+  ignore-move-collision: true
+move-speed:
+  no-slowdown:
+    when-sneak: false
+    when-use-item: false
+    when-with-block: false
+    when-on-block: false
+    when-in-block: false
+    when-special-block: false
+    fake-sneak: false
+    fake-sneak-hotkey: 'hotkey:'
+    use-item-bypass: enum:use_item_noslow_bypass:NO_BYPASS
+    use-item-swap-item-delay: 1
+    use-item-swap-no-sprint: false
+    block-in-bypass: enum:no_web_slow_bypass:NO_BYPASS
+    block-in-keep-y: false
+    block-in-mine-when-jump: false
+    fake-sneak-mode: enum:bypass_mode:NO_BYPASS
+    fake-sneak-status-mode: enum:packet_sneak_bypass_mode:BAD_PACKET
+  fake-sneak-status: 'hotkey:'
+  fly-speed: false
+  toggle-flight-speed: 'hotkey:'
+  fly-speed-creative: 0.8
+  fly-speed-survival: 0.4
+  walk-speed: false
+  toggle-walk-speed: 'hotkey:'
+  walk-speed-override: 0.1
+  sprint:
+    legal-auto-sprint: false
+    legal-auto-sprint-hotkey: 'hotkey:'
+    log-auto-sprint: false
+    fake-sprint: false
+    fake-sprint-mode: enum:bypass_mode:NO_BYPASS
+    all-direction-sprint: false
+    bypass-mode: enum:bypass_mode:NO_BYPASS
+  swim-control:
+    enable: false
+    hotkey: 'hotkey:'
+    mode: enum:swim_control_mode:GRIM
+  timer:
+    timer-enable: false
+    timer-enable-hotkey: 'hotkey:'
+    multiply: 0
+elytra:
+  elytra-tweaks:
+    no-kinetic-mode: nbt:optionalprimitive:{present:0b,value:"wrapenum|enum:bypass_mode:BYPASS_GRIM"}
+    mace-hit-fix-mode: nbt:optionalprimitive:{present:1b,value:"wrapenum|enum:bypass_mode:BYPASS_GRIM"}
+    no-fall-when-landing: true
+    no-fall-disable-no-fall-module: false
+    auto-switch: false
+    auto-take-off: 'hotkey:'
+    auto-take-off-fireworks-from-ground: false
+    auto-take-off-retry-ticks: 3
+    auto-start-fly-join-server: true
+    firwork-speed-limit-web: false
+    firework-liquid-fly: false
+    manually-switch: 'hotkey:'
+  unbreakable-elytra:
+    enable: false
+    hotkey: 'hotkey:'
+    period: 16
+    reset-vanilla: false
+  armor-fly:
+    enable: true
+    enable-hotkey: hotkey:Z
+    armor-mode: enum:armorflymode:TICK
+    force-no-elytra: true
+    enable-liquid-fly: false
+    liquid-fly-only-fireworks: false
+    on-ground-fly-only-fireworks: true
+    land-auto-close: false
+    land-auto-sneak: false
+    close-continue-fly: nbt:optionalprimitive:{present:1b,value:"int|20"}
+    armor-fly-fix-grim-bad-packets-1: true
+    pose-fix: true
+    render-fix: true
+    enable-manually-swap: false
+    anti-kick: true
+    max-delay-ticks: nbt:optionalprimitive:{present:1b,value:"int|7"}
+  custom-fireworks:
+    firework-item-id: nbt:regex:"^(.*?_MULTI_TOOL|STAFF_ELEMENTAL_WIND)$"
+    firework-delay-multiply-vanilla: 40
+    firework-auto-use-vanilla: true
+    rocket-extra-effect-ticks: 1
+    auto-rescale-firework-box: true
+    auto-rescale-firework-amount: 1.6
+    firework-speed-limit-up: nbt:optionalprimitive:{present:1b,value:"double|5.0"}
+    firework-speed-limit-down: nbt:optionalprimitive:{present:1b,value:"double|5.0"}
+    auto-rescale-firework-al: enum:elytra_extra_fireworks_al_type:V1
+    auto-rescale-firework-anti-lag-threshold: 0.002
+    switch-auto-rescale-firework-al-key: 'hotkey:'
+    auto-rescale-axis-zero-point-three: 0.02
+    firework-boost-enable: false
+    firework-boost-hotkey: 'hotkey:'
+    firework-boost-speed: 1.7
+    baritone-use-rocket-boost: false
+    firework-boost-use-rescale: true
+    fly-rocket-on-first-off: false
+    fly-rocket-on-first-off-hotkey: 'hotkey:'
+    click-firework-use: 'hotkey:'
+    log-no-fireworks: false
+    fireworks-lag-delay: true
+    firework-lag-delay-hotkey: 'hotkey:'
+    fireworks-delay-ms: 500
+    motion-amount: 1.7
+    firework-max-delay-multiply-vanilla: 20.0
+  simple-flight-control:
+    enable-control: true
+    enable-control-hotkey: hotkey:Z
+    motion-mode: enum:motionmode:FIRE_WORKS
+    firework-rotation-last-ticks: 3
+    rotate-when-void-motion: true
+    flight-mode: enum:elytramode:CONTROL
+    flight-toggle: 'hotkey:'
+    use-floating-utils: true
+    horizontal-no-gravity: true
+    pause-when-accelerate: true
+    land-auto-close: false
+    hold-jump-takeoff-ticks: nbt:optionalprimitive:{present:0b,value:"int|10"}
+    motion-lerp-argument: 1.0
+    motion-lerp-starting: true
+    use-auto-rescale: true
+    override-pullup-angle: nbt:optionalprimitive:{present:0b,value:"double|45.0"}
+    override-downward-angle: nbt:optionalprimitive:{present:0b,value:"double|45.0"}
+    override-horizontal-fly-angle: nbt:optionalprimitive:{present:0b,value:"double|0.1"}
+    use-auto-rescale-best-climbing-speed: false
+    auto-fly: false
+    auto-fly-hotkey: 'hotkey:'
+    auto-fly-auto-jump-off: false
+    auto-fly-land-auto-close: true
+  elytra-flight-legit:
+    grim-accelerate:
+      enable: false
+      hotkey: 'hotkey:'
+      set-back-mode: enum:setback_trigger_type:CRASH_PACKETS
+      max-accelerate-velocity: 6.0
+      fix-old-version-velocity-shit: true
+      fix-kick-from-lag: true
+    elytra-jump:
+      enable: false
+      hotkey: 'hotkey:'
+      pitch: 80.0
+      sneak: false
+      ground-height: 3.0
+      axis-strict: false
+      auto-mine-obstacles: false
+      auto-avoid-obstacles: false
+      avoid-obstacles-yaw-range: 50
+      avoid-obstacles-predict-ticks: 80
+      avoid-holes: false
+      queue-packets: true
+velocity-management:
+  antikb:
+    enable: false
+    hotkey: 'hotkey:'
+    horizontal-threshold: 0.0
+    vertical-threshold: 0.0
+    mode: enum:velocity_bypass_mode:NONE
+    bypass-explosions: false
+    grim-freeze-if-walk: false
+    grim-reset-kb-tick: 3
+    pause-when-wasd: false
+    freeze-time: 5.0
+    on-ground-only: false
+    not-in-water: false
+    execute-during-fireworks: true
+    execute-in-wall: true
+    no-entity-push: false
+    no-liquid-flow-push: false
+    no-climbing: false
+    client-velocity-control:
+      no-block-push: false
+      no-entity-push: false
+      no-liquid-flow-push: false
+      no-climbing: false
+  floating-utils:
+    grim-floating:
+      enable: false
+      hotkey: 'hotkey:'
+      on-ground-float: false
+      use-snap-packet: false
+    conditional-freeze:
+      freeze-void: nbt:optionalprimitive:{present:0b,value:"double|-2.0"}
+      freeze-absolute-y: nbt:optionalprimitive:{present:0b,value:"double|256.0"}
+    elytra-slow-falling:
+      enable: false
+      hotkey: 'hotkey:'
+travelling-control:
+  toggle-auto-speed: 'hotkey:'
+  control-type: enum:travel_control_type:MOV_VOID
+  speed: 9.9
+  elytra-speed: 1.7
+  min-height: 256
+  max-height: 400
+  void-2-dup-packet: 4
+  pitch-40-end-safety: false
+  pitch-40-end-kick: false
+  pitch-40-end-safety-2: false
+  pitch-40-auto-pull-up: false
+  pitch-40-pitch-positive: 15
+  pitch-40-pitch-negative: 60
+  pitch-40-negative-delta: 0.0
+  pitch-40-grim-pitch-positive: 15
+  pitch-40-grim-pitch-negative: 60
+  pitch-40-negative-delta-grim: 0.0
+  limit-speed-for-dangerous-speed: false
+  pitch-40-height-limit: nbt:optionalprimitive:{present:0b,value:"double|900.0"}
+  clear-target-when-exit: false
+  max-firework-height: 400
+  use-fireworks-boost-angle: false
+  glide-pitch: 15
+  auto-exit-without-fireworks: false
+  replenish-without-fireworks: false
+  low-height-exit: false
+  flight-enter-reconfiguration-kick: false

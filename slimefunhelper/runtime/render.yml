@@ -1,0 +1,319 @@
+resource:
+  server:
+    ignore-server-request: false
+render:
+  nightvision: false
+  no-world-bob-view: true
+  disable-wurst-hud: false
+  enhanced-debug-hud: false
+  no-render:
+    enable: false
+    hotkey: 'hotkey:'
+    overlay:
+      wall-overlay: false
+      liquid-overlay: false
+      fire-overlay: false
+      freeze-overlay: false
+      item-overlay: false
+      portal-overlay: false
+      gui-overlay: false
+      vignette: false
+      totem: false
+    world-effect:
+      distance-fog: false
+      block-random-effect: false
+      weather-effect: false
+    eff-setting:
+      no-nausea: false
+      no-darkness: false
+      no-blindness: false
+      force-no: false
+      types: nbt:entryset:{data:["minecraft:blindness","minecraft:darkness","minecraft:nausea"],key_type:"minecraft:mob_effect"}
+    fov-effect:
+      fly: false
+      slow-down: false
+      speed-up: false
+      use-bow: false
+    entity:
+      force-no: false
+      types: nbt:entitytyperegex:"^()$"
+      invisibility: false
+    particle:
+      force-no: false
+      types: nbt:entryset:{data:[],key_type:"minecraft:particle_type"}
+  wake-up-screen: hotkey:F11
+  sleep-mode-runner-optimize: false
+sounds:
+  no-sounds:
+    enable: false
+    hotkey: 'hotkey:'
+    cancel-sound-play: false
+    cancel-hud-display: false
+    no-sounds: nbt:entryset:{data:["minecraft:item.armor.equip_diamond","minecraft:item.armor.equip_netherite"],key_type:"minecraft:sound_event"}
+    volume-override: nbt:entryprimitivemap:{data:[],default_key_primitive:"holder|minecraft:sound_event|minecraft:default",key_type:"holder",value_type:"double"}
+detect-entity:
+  entity-log:
+    enable: false
+    hotkey: 'hotkey:'
+    whitelist: nbt:entryset:{data:["minecraft:player"],key_type:"minecraft:entity_type"}
+    log-entity-to-chat: true
+    log-log-player-to-chat: false
+    render-log-players: false
+    render-options: nbt:tracingoption:{box:1b,line:0b}
+    render-color: nbt:wrapcolor:"light_purple"
+    render-reason-log: true
+    render-reason-teleport: true
+    render-reason-faraway: false
+    log-log-reconnect: false
+    log-spawn-format: 'nbt:stringformat:{arguments:["type","name","position","distance"],color_str:1b,format:"{type}
+      {name} spawn at position {position}, distance: {distance}"}'
+    log-disappear-format: 'nbt:stringformat:{arguments:["type","name","position","distance"],color_str:1b,format:"{type}
+      {name} disappear at position {position}, distance: {distance}"}'
+    log-player-logout-format: nbt:stringformat:{arguments:["name","action","position"],color_str:1b,format:"Player
+      {name} {action} at {position}"}
+    log-player-join-queue-format: 'nbt:stringformat:{arguments:["name","position","queue_count"],color_str:1b,format:"Player
+      {name} join queue, last position: {position}, current queue: {queue_count}"}'
+    log-player-relogin-format: 'nbt:stringformat:{arguments:["name","position","track_button"],color_str:1b,format:"Player
+      {name} reLogin, last position: {position} {track_button}"}'
+  entity-esp:
+    enable: false
+    hotkey: 'hotkey:'
+    render-mode: enum:render_mode:RENDER_3D
+    whitelist: nbt:entryset:{data:["minecraft:wither_skeleton","minecraft:player","minecraft:wither","minecraft:wither_skull"],key_type:"minecraft:entity_type"}
+    color: nbt:entryprimitivemap:{data:[{key:"holder|minecraft:entity_type|minecraft:player",value:"color|yellow"},{key:"holder|minecraft:entity_type|minecraft:armor_stand",value:"color|green"},{key:"holder|minecraft:entity_type|minecraft:default",value:"color|red"}],default_key_primitive:"holder|minecraft:entity_type|minecraft:default",key_type:"holder",value_type:"color"}
+    boxing-option: nbt:entryprimitivemap:{data:[{key:"holder|minecraft:entity_type|minecraft:player",value:"boolean|true"},{key:"holder|minecraft:entity_type|minecraft:end_crystal",value:"boolean|true"},{key:"holder|minecraft:entity_type|minecraft:wither",value:"boolean|true"},{key:"holder|minecraft:entity_type|minecraft:default",value:"boolean|false"}],default_key_primitive:"holder|minecraft:entity_type|minecraft:default",key_type:"holder",value_type:"boolean"}
+    trace-option: nbt:entryprimitivemap:{data:[{key:"holder|minecraft:entity_type|minecraft:player",value:"boolean|true"},{key:"holder|minecraft:entity_type|minecraft:end_crystal",value:"boolean|false"},{key:"holder|minecraft:entity_type|minecraft:wither",value:"boolean|true"},{key:"holder|minecraft:entity_type|minecraft:default",value:"boolean|false"}],default_key_primitive:"holder|minecraft:entity_type|minecraft:default",key_type:"holder",value_type:"boolean"}
+    highlight-option: nbt:entryprimitivemap:{data:[{key:"holder|minecraft:entity_type|minecraft:player",value:"boolean|true"},{key:"holder|minecraft:entity_type|minecraft:end_crystal",value:"boolean|true"},{key:"holder|minecraft:entity_type|minecraft:wither",value:"boolean|true"},{key:"holder|minecraft:entity_type|minecraft:default",value:"boolean|true"}],default_key_primitive:"holder|minecraft:entity_type|minecraft:default",key_type:"holder",value_type:"boolean"}
+  item-esp:
+    enable: false
+    enable-simple: false
+    enable-item: false
+    enable-frame: false
+    draw-name: false
+    options: nbt:tracingoption:{box:1b,line:0b}
+    name-display: false
+    nbt-predicate: nbt:primitivelist:{data:[],element_type:"nbtcompound"}
+    item-type: nbt:entryset:{data:["minecraft:netherite_axe","minecraft:golden_apple","minecraft:shulker_spawn_egg","minecraft:black_shulker_box","minecraft:firework_star","minecraft:nether_star","minecraft:pink_shulker_box","minecraft:gray_shulker_box","minecraft:netherite_hoe","minecraft:light_gray_shulker_box","minecraft:elytra","minecraft:cyan_shulker_box","minecraft:lime_shulker_box","minecraft:splash_potion","minecraft:lingering_potion","minecraft:netherite_boots","minecraft:purple_shulker_box","minecraft:trident","minecraft:netherite_helmet","minecraft:experience_bottle","minecraft:netherite_ingot","minecraft:netherite_block","minecraft:yellow_shulker_box","minecraft:skeleton_skull","minecraft:netherite_leggings","minecraft:netherite_upgrade_smithing_template","minecraft:netherite_shovel","minecraft:red_shulker_box","minecraft:end_crystal","minecraft:shulker_box","minecraft:potion","minecraft:mace","minecraft:totem_of_undying","minecraft:wither_skeleton_skull","minecraft:brown_shulker_box","minecraft:netherite_pickaxe","minecraft:netherite_chestplate","minecraft:netherite_sword","minecraft:green_shulker_box","minecraft:enchanted_golden_apple","minecraft:blue_shulker_box","minecraft:respawn_anchor","minecraft:magenta_shulker_box","minecraft:light_blue_shulker_box","minecraft:obsidian","minecraft:shulker_shell","minecraft:white_shulker_box","minecraft:netherite_scrap","minecraft:orange_shulker_box"],key_type:"minecraft:item"}
+    special-options: nbt:tracingoption:{box:1b,line:1b}
+    name-display-special: true
+    color: nbt:wrapcolor:"yellow"
+    special-color: nbt:wrapcolor:"#ED0355"
+    name-display-color: nbt:wrapcolor:"white"
+    special-name-display-color: nbt:wrapcolor:"white"
+    name-scale: 0.75
+  item-list:
+    enable: false
+    hotkey: 'hotkey:'
+    render-item-frame: false
+    render-simple: false
+    render-important: false
+    nbt-predicate: nbt:primitivelist:{data:[],element_type:"nbtcompound"}
+    item-type: nbt:entryset:{data:["minecraft:netherite_axe","minecraft:golden_apple","minecraft:shulker_spawn_egg","minecraft:black_shulker_box","minecraft:firework_star","minecraft:nether_star","minecraft:pink_shulker_box","minecraft:gray_shulker_box","minecraft:netherite_hoe","minecraft:light_gray_shulker_box","minecraft:elytra","minecraft:cyan_shulker_box","minecraft:lime_shulker_box","minecraft:splash_potion","minecraft:lingering_potion","minecraft:netherite_boots","minecraft:purple_shulker_box","minecraft:trident","minecraft:netherite_helmet","minecraft:experience_bottle","minecraft:netherite_ingot","minecraft:netherite_block","minecraft:yellow_shulker_box","minecraft:skeleton_skull","minecraft:netherite_leggings","minecraft:netherite_upgrade_smithing_template","minecraft:netherite_shovel","minecraft:red_shulker_box","minecraft:end_crystal","minecraft:shulker_box","minecraft:potion","minecraft:mace","minecraft:totem_of_undying","minecraft:wither_skeleton_skull","minecraft:brown_shulker_box","minecraft:netherite_pickaxe","minecraft:netherite_chestplate","minecraft:netherite_sword","minecraft:green_shulker_box","minecraft:enchanted_golden_apple","minecraft:blue_shulker_box","minecraft:respawn_anchor","minecraft:magenta_shulker_box","minecraft:light_blue_shulker_box","minecraft:obsidian","minecraft:shulker_shell","minecraft:white_shulker_box","minecraft:netherite_scrap","minecraft:orange_shulker_box"],key_type:"minecraft:item"}
+    right: false
+    pos: nbt:widgetpos:{lengthX:0,lengthY:0,percentageX:0.0d,percentageY:0.0d,type:0}
+    scaling: 1.0
+    color: nbt:wrapcolor:"#F05BDA"
+    bold: false
+  calculate-trace: false
+  cal-fireball: false
+  cal-projectile: false
+  render-fireball: false
+  render-projectile: false
+combat-render:
+  explosive-esp:
+    enable: false
+    hotkey: 'hotkey:'
+    distance: 16
+    options: nbt:tracingoption:{box:1b,line:0b}
+    anchor-color: nbt:wrapcolor:"gold"
+    crystal-color: nbt:wrapcolor:"light_purple"
+player-info:
+  name-tag:
+    enable: false
+    player-extra-height: 1.0
+    player-size: 1.0
+    hide-vanilla: false
+    hide-self: false
+    health: false
+    ping: false
+    distance: false
+    equipment: false
+    equipment-damage: enum:equipment_hud_damage_display_type:NONE
+    pop: false
+    enchant-protection-sum: false
+    potion: false
+    name-color: nbt:wrapcolor:"white"
+    friend-name-color: nbt:wrapcolor:"white"
+    health-color: nbt:wrapcolor:"#14AAAA"
+    ping-color: nbt:wrapcolor:"green"
+    distance-color: nbt:wrapcolor:"red"
+    pop-color: nbt:wrapcolor:"#FFC800"
+    other-info-color: nbt:wrapcolor:"yellow"
+    potion-color: nbt:wrapcolor:"white"
+  name-list:
+    enable: false
+    player-list-max-length: 20
+    list-right: false
+    scale: 1.0
+    list-pos: nbt:widgetpos:{lengthX:5,lengthY:5,percentageX:0.02d,percentageY:0.02d,type:0}
+    hide-self: false
+    health: false
+    ping: false
+    distance: false
+    equipment: false
+    equipment-damage: enum:equipment_hud_damage_display_type:NONE
+    pop: false
+    enchant-protection-sum: false
+    potion: false
+    name-color: nbt:wrapcolor:"white"
+    friend-name-color: nbt:wrapcolor:"white"
+    health-color: nbt:wrapcolor:"#14AAAA"
+    ping-color: nbt:wrapcolor:"green"
+    distance-color: nbt:wrapcolor:"red"
+    pop-color: nbt:wrapcolor:"#FFC800"
+    other-info-color: nbt:wrapcolor:"yellow"
+    potion-color: nbt:wrapcolor:"white"
+detect-block:
+  chest-esp:
+    enable: false
+    enable-types: nbt:entryset:{data:["minecraft:chest","minecraft:barrel","minecraft:ender_chest","minecraft:shulker_box","minecraft:jukebox","minecraft:trapped_chest"],key_type:"minecraft:block_entity_type"}
+    esp-trace-options: nbt:tracingoption:{box:1b,line:0b}
+    color-map: nbt:entryprimitivemap:{data:[{key:"holder|minecraft:block_entity_type|minecraft:dispenser",value:"color|white"},{key:"holder|minecraft:block_entity_type|minecraft:hopper",value:"color|aqua"},{key:"holder|minecraft:block_entity_type|minecraft:barrel",value:"color|green"},{key:"holder|minecraft:block_entity_type|minecraft:furnace",value:"color|white"},{key:"holder|minecraft:block_entity_type|minecraft:chest",value:"color|green"},{key:"holder|minecraft:block_entity_type|minecraft:trapped_chest",value:"color|#FF8000"},{key:"holder|minecraft:block_entity_type|minecraft:shulker_box",value:"color|#FF00FF"},{key:"holder|minecraft:block_entity_type|minecraft:ender_chest",value:"color|#00FFFF"},{key:"holder|minecraft:block_entity_type|minecraft:dropper",value:"color|white"},{key:"holder|minecraft:block_entity_type|minecraft:default",value:"color|green"}],default_key_primitive:"holder|minecraft:block_entity_type|minecraft:default",key_type:"holder",value_type:"color"}
+  search:
+    enable: false
+    search-type: nbt:entryset:{data:["minecraft:end_gateway","minecraft:nether_portal","minecraft:end_portal","minecraft:end_portal_frame"],key_type:"minecraft:block"}
+    search-color: nbt:entryprimitivemap:{data:[{key:"holder|minecraft:block|minecraft:end_portal",value:"color|yellow"},{key:"holder|minecraft:block|minecraft:nether_portal",value:"color|red"},{key:"holder|minecraft:block|minecraft:end_portal_frame",value:"color|blue"},{key:"holder|minecraft:block|minecraft:command_block",value:"color|white"},{key:"holder|minecraft:block|minecraft:end_gateway",value:"color|yellow"},{key:"holder|minecraft:block|minecraft:default",value:"color|green"}],default_key_primitive:"holder|minecraft:block|minecraft:default",key_type:"holder",value_type:"color"}
+    search-radius: 12
+    esp-option: nbt:tracingoption:{box:1b,line:0b}
+mine-render:
+  mine-esp:
+    enable: false
+    hotkey: 'hotkey:'
+    render-name: false
+    render-box: false
+    ghost-hand-predict: false
+    name-color: nbt:wrapcolor:"white"
+    frame-color: nbt:wrapcolor:"aqua"
+    frame-double-color: nbt:wrapcolor:"aqua"
+    progress-color: nbt:wrapcolor:"gold"
+    render-grid-2d: false
+    grid-pos: nbt:widgetpos:{lengthX:0,lengthY:0,percentageX:0.5d,percentageY:0.7d,type:0}
+    grid-cell-size: 12
+    grid-gap: 1
+    grid-breaking-color: nbt:wrapcolor:"red"
+    grid-double-color: nbt:wrapcolor:"aqua"
+    grid-solid-color: nbt:wrapcolor:"#606060"
+    grid-air-color: nbt:wrapcolor:"#181818"
+player-io:
+  log-player-io: false
+  log-player-in-format: nbt:stringformat:{arguments:["name"],color_str:1b,format:"&7&l[&a&l+&7&l]
+    &f{name}"}
+  log-player-out-format: nbt:stringformat:{arguments:["name"],color_str:1b,format:"&7&l[&c&l-&7&l]
+    &f{name}"}
+  player-queue:
+    enable: false
+    certain-order: false
+    tracked-queue-orders: nbt:intprimitivelist:"1,2,3,4,5,10,20"
+    tracked-skip-queue: true
+    leave-clear-cache: false
+    remove-track-after-join: false
+zoom:
+  enable: false
+  hotkey: 'hotkey:'
+  scroll-scale: true
+  default-zoom: 3.0
+  min-zoom-scale: 1.0
+  override-common-fov: nbt:optionalprimitive:{present:0b,value:"double|1.0"}
+custom-overlay:
+  enable-custom: false
+  enable-custom-path: slimefunhelper:textures/custom/genshin_impact.png
+  custom-background-color: -1
+  custom-progress-bar-color: nbt:wrapcolor:"white"
+freecam:
+  enable: false
+  enable-hotkey: hotkey:U
+  speed: 1.0
+  speed-adjust: nbt:optionalprimitive:{present:0b,value:"double|0.05"}
+render-optimize:
+  optimize-item-tick: false
+  item-culling-distance: 40.0
+  optimize-particle-tick: false
+  optimize-armor-stand-tick: false
+  optimize-entity-label-render: false
+  entity-label-render-culling-distance: 64.0
+  optimize-block-label-render: false
+  block-label-render-culling-distance: 20.0
+  optimize-culling-enable: false
+  optimize-culling-enable-hotkey: 'hotkey:'
+  optimize-culling-entity-types: nbt:entryset:{data:["minecraft:item_frame","minecraft:item","minecraft:item_display"],key_type:"minecraft:entity_type"}
+  optimize-culling-block-entity-types: nbt:entryset:{data:["minecraft:rain","minecraft:dolphin","minecraft:glow","minecraft:heart","minecraft:bubble_pop","minecraft:falling_dripstone_water","minecraft:flame","minecraft:sculk_charge_pop","minecraft:item_snowball","minecraft:nautilus","minecraft:raid_omen","minecraft:spore_blossom_air","minecraft:falling_obsidian_tear","minecraft:dripping_lava","minecraft:dust","minecraft:bubble_column_up","minecraft:block_marker","minecraft:gust_emitter_small","minecraft:happy_villager","minecraft:enchant","minecraft:wax_on","minecraft:campfire_signal_smoke","minecraft:wax_off","minecraft:sculk_soul","minecraft:falling_spore_blossom","minecraft:damage_indicator","minecraft:infested","minecraft:ash","minecraft:explosion","minecraft:gust","minecraft:electric_spark","minecraft:gust_emitter_large","minecraft:dust_color_transition","minecraft:falling_dust","minecraft:current_down","minecraft:dust_plume","minecraft:item_cobweb","minecraft:lava","minecraft:reverse_portal","minecraft:trial_spawner_detection","minecraft:bubble","minecraft:landing_lava","minecraft:sneeze","minecraft:dripping_water","minecraft:landing_honey","minecraft:soul","minecraft:note","minecraft:mycelium","minecraft:explosion_emitter","minecraft:underwater","minecraft:small_gust","minecraft:block","minecraft:totem_of_undying","minecraft:large_smoke","minecraft:ominous_spawning","minecraft:item_slime","minecraft:instant_effect","minecraft:entity_effect","minecraft:falling_nectar","minecraft:cherry_leaves","minecraft:item","minecraft:sculk_charge","minecraft:elder_guardian","minecraft:vault_connection","minecraft:poof","minecraft:scrape","minecraft:sonic_boom","minecraft:sweep_attack","minecraft:shriek","minecraft:portal","minecraft:falling_lava","minecraft:dragon_breath","minecraft:small_flame","minecraft:egg_crack","minecraft:angry_villager","minecraft:splash","minecraft:crit","minecraft:soul_fire_flame","minecraft:witch","minecraft:smoke","minecraft:glow_squid_ink","minecraft:spit","minecraft:falling_honey","minecraft:campfire_cosy_smoke","minecraft:snowflake","minecraft:fishing","minecraft:flash","minecraft:white_smoke","minecraft:falling_water","minecraft:squid_ink","minecraft:dust_pillar","minecraft:dripping_honey","minecraft:enchanted_hit","minecraft:warped_spore","minecraft:dripping_obsidian_tear","minecraft:cloud","minecraft:end_rod","minecraft:trial_omen","minecraft:composter","minecraft:landing_obsidian_tear","minecraft:white_ash","minecraft:crimson_spore","minecraft:dripping_dripstone_water","minecraft:effect","minecraft:trial_spawner_detection_ominous","minecraft:vibration","minecraft:falling_dripstone_lava","minecraft:dripping_dripstone_lava","minecraft:firework"],key_type:"minecraft:particle_type"}
+  optimize-culling-radius: 64.0
+  optimize-culling-use-raycast: false
+in-game-hud:
+  hud:
+    enable: false
+    hotkey: 'hotkey:'
+    right: false
+    pos: nbt:widgetpos:{lengthX:0,lengthY:0,percentageX:0.0d,percentageY:0.0d,type:0}
+    scaling: 1.0
+    color: nbt:wrapcolor:"#F05BDA"
+    bold: false
+    elements: nbt:hudelementselectset:[{key:"ICON",value:0b},{key:"COMMON_INFO",value:0b},{key:"CONNECTION_INFO",value:0b},{key:"POSITION",value:0b},{key:"HEIGHT",value:0b},{key:"DIRECTION",value:0b},{key:"ROTATION",value:0b},{key:"FALL_DISTANCE",value:0b},{key:"SPEED",value:0b},{key:"SPEED_HORIZONTAL",value:0b},{key:"SPEED_VERTICAL",value:0b}]
+    use-kmPH: false
+  module-list-hud:
+    enable: false
+    hotkey: 'hotkey:'
+    right: false
+    pos: nbt:widgetpos:{lengthX:0,lengthY:0,percentageX:0.0d,percentageY:0.0d,type:0}
+    scaling: 1.0
+    color: nbt:wrapcolor:"#F05BDA"
+    bold: false
+  inv-hud:
+    enable: false
+    hotkey: 'hotkey:'
+    right: false
+    down: false
+    pos: nbt:vec2:{x:0.02d,y:0.3d}
+    show-items: nbt:registryregex:{regex:"^(.*)$",registry:"minecraft:item"}
+    count-per-line: 9
+    show-shulker-items: true
+  player-statistic:
+    enable: false
+    hotkey: 'hotkey:'
+    right: false
+    pos: nbt:widgetpos:{lengthX:0,lengthY:0,percentageX:0.0d,percentageY:0.0d,type:0}
+    scaling: 1.0
+    color: nbt:wrapcolor:"#F05BDA"
+    bold: false
+    enable-items: false
+    item-types: nbt:entryset:{data:["minecraft:totem_of_undying","minecraft:firework_rocket"],key_type:"minecraft:item"}
+    enable-potions: false
+    potion-types: nbt:entryset:{data:["minecraft:turtle_master"],key_type:"minecraft:potion"}
+    enable-effect: false
+  equipment-hud:
+    enable: false
+    hotkey: 'hotkey:'
+    right: false
+    pos: nbt:widgetpos:{lengthX:0,lengthY:0,percentageX:0.0d,percentageY:0.0d,type:0}
+    scaling: 1.0
+    damage-display: enum:equipment_hud_damage_display_type:NONE
+    damage-display-position: enum:direction2d:DOWN
+    hand-pos: nbt:widgetpos:{lengthX:-60,lengthY:0,percentageX:0.0d,percentageY:0.0d,type:1}
+    offhand-pos: nbt:widgetpos:{lengthX:40,lengthY:0,percentageX:0.0d,percentageY:0.0d,type:1}
+    head-pos: nbt:widgetpos:{lengthX:-40,lengthY:0,percentageX:0.0d,percentageY:0.0d,type:1}
+    chest-pos: nbt:widgetpos:{lengthX:-20,lengthY:0,percentageX:0.0d,percentageY:0.0d,type:1}
+    leg-pos: nbt:widgetpos:{lengthX:0,lengthY:0,percentageX:0.0d,percentageY:0.0d,type:1}
+    feet-pos: nbt:widgetpos:{lengthX:20,lengthY:0,percentageX:0.0d,percentageY:0.0d,type:1}
+itemstack-display:
+  storage-display:
+    enable-storage-display: true
+    enable-info-display: true
+    enable-shulker-display: false
+    display-mode: enum:shulker_storage_display_mode:ALL
+  enchantment-display:
+    enable: false
+    mace: true
+    weapon: true
+    equippable: true
+    tool: true
+    bow: false

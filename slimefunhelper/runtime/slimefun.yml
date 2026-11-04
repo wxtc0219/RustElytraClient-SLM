@@ -1,0 +1,15 @@
+recipe-record:
+  enable: false
+  save-data: true
+  lock-existing: false
+  lock-current-data: false
+  multiblock-pattern: ^(多方块结构|MultiBlock)$
+  rp-title: nbt:regex:"^(Slimefun 指南.*)$"
+multi-block-clicker:
+  enable: false
+  enable-crafter-gui: false
+  rate: 9
+  bypass-targeting-mode: enum:legal_interact_mode:USEITEM_PACKET
+slimefun-settings:
+  slimefunid-copy: hotkey:LEFT_CONTROL,C,BUTTON_1
+  enable-tooltips-display: true
