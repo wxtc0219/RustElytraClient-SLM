@@ -1,0 +1,270 @@
+interact-fix:
+  use-grim-expand-eye-height: false
+  reach-distance: 0.0
+  riding-reach-distance: 1.0
+  no-cool-down: false
+  cool-down-rewrite: 4
+  allow-ride-interact: true
+  hold-use: false
+  hold-use-start-tick: 4
+  client-using-state-fix: true
+  gui-interact:
+    enable: false
+    hotkey: 'hotkey:'
+    use-tick-when-screen-open: true
+interaction-tweaks:
+  auto-click:
+    enable: false
+    hotkey: 'hotkey:'
+    only-when-press: true
+    cooldown: 0
+    left: false
+    right: false
+  air-place:
+    enable: false
+    hotkey: 'hotkey:'
+    range: 5.0
+    only-blocks: true
+    render: false
+    mode: enum:air_place_mode:VANILLA
+    max-batch-place: 64
+    inv-sleep-tick: 2
+  no-interact:
+    enable: false
+    hotkey: 'hotkey:'
+    no-interact-block: nbt:entryset:{data:["minecraft:flower_pot","minecraft:chest","minecraft:trapped_chest","minecraft:ender_chest","minecraft:decorated_pot"],key_type:"minecraft:block"}
+    no-interact-ignore-item: nbt:entryset:{data:[],key_type:"minecraft:item"}
+    no-interact-vanilla-only: true
+    auto-disable-same-tick-offhand: false
+    sneak-if-may-instant: false
+    auto-correct-placement: false
+    auto-correct-mode: enum:legal_interact_mode:NONE
+    auto-correct-air-place: false
+    auto-correct-state: false
+    swing-hand: true
+    render-fail-interact: false
+    render-fail-interact-color: nbt:wrapcolor:"#FF0000"
+  auto-ride:
+    enable: false
+    hotkey: 'hotkey:'
+    interact-cooldown: 4
+  auto-eat:
+    enable: false
+    hotkey: 'hotkey:'
+    log: true
+    inv: true
+    left-click-tool-force-eat: false
+    left-click-weapon: true
+    left-click-extra-items: nbt:entryset:{data:["minecraft:totem_of_undying"],key_type:"minecraft:item"}
+    enable-health: true
+    enable-hunger: true
+    health-level: 10.0
+    hunger-level: 16
+    no-enemy: true
+    no-enemy-distance-air: 8.0
+    no-enemy-distance-ground: 8.0
+    cooldown: 20
+    white-list-item: nbt:entryset:{data:["minecraft:golden_apple","minecraft:potion","minecraft:golden_carrot"],key_type:"minecraft:item"}
+    firework-fix: true
+    auto-fireworks: false
+    pause-in-liquid: false
+    ghost-hand-mode: enum:ghost_hand_mode:INV_SWAP
+    pause-for-fireworks: true
+    pause-when-surround: false
+    pause-when-interact: nbt:optionalprimitive:{present:0b,value:"int|2"}
+    auto:
+      enable: false
+      hotkey: 'hotkey:'
+      enable-health: true
+      enable-hunger: true
+      health-level: 10.0
+      hunger-level: 16
+      no-enemy: true
+      no-enemy-distance-air: 8.0
+      no-enemy-distance-ground: 8.0
+      cooldown: 20
+      pause-in-lava: false
+    left-click-force-eat:
+      enable: false
+      hotkey: 'hotkey:'
+      need-press-left-button: false
+      enable-offhand: true
+      enable-weapon: true
+      enable-extra-items: nbt:entryset:{data:["minecraft:totem_of_undying"],key_type:"minecraft:item"}
+  auto-use:
+    enable: false
+    hotkey: 'hotkey:'
+    log: false
+    only-when-enemy-near: false
+    enemy-near-distance: 12.0
+    use-food: false
+    use-item-white-list: nbt:entryset:{data:["minecraft:iron_sword","minecraft:stone_sword","minecraft:golden_sword","minecraft:diamond_sword","minecraft:shield","minecraft:wooden_sword","minecraft:netherite_sword"],key_type:"minecraft:item"}
+  interact-manager:
+    offhand: false
+    swing-hand: false
+    log-command: false
+    log-action: false
+    offhand-hold-use: false
+    keep-task-when-exit: false
+    ignore-potion-level: false
+    disable-low-version-speed-reset: false
+    disable-low-version-speed-reset-when-command: false
+    ghost-hand-mode: enum:ghost_hand_mode:INV_SWAP
+interact-arua:
+  interact:
+    enable: false
+    hotkey: 'hotkey:'
+    enable-entity: true
+    enable-block: false
+    entity-mode: enum:legal_targeting_mode:NONE
+    block-mode: enum:legal_interact_mode:NONE
+    entity-whitelist: nbt:entitytyperegex:"^(villager|chest_minecart)$"
+    ignore-block-place: false
+    ignore-use-item: false
+    use-item-black-list: nbt:entryset:{data:[],key_type:"minecraft:item"}
+    entity-priority: true
+    only-interact-interactable-entity: true
+    block-whitelist: nbt:entryset:{data:["minecraft:chest","minecraft:shulker_box","minecraft:trapped_chest","minecraft:ender_chest"],key_type:"minecraft:block"}
+    interact-block-only-when-hand-not-block: true
+    only-interact-interactable-block: true
+    tp-interact-range: nbt:optionalprimitive:{present:0b,value:"double|10.0"}
+    swing-hand: true
+    render-target: false
+    render-target-color: nbt:wrapcolor:"red"
+    block-air-place: false
+    interact-redirect:
+      enable: false
+      hotkey: 'hotkey:'
+      enable-entity: true
+      enable-block: false
+      entity-whitelist: nbt:entitytyperegex:"^(villager|chest_minecart)$"
+      ignore-block-place: false
+      ignore-use-item: false
+      use-item-black-list: nbt:entryset:{data:[],key_type:"minecraft:item"}
+      entity-priority: true
+      only-interact-interactable-entity: true
+      block-whitelist: nbt:entryset:{data:["minecraft:chest","minecraft:shulker_box","minecraft:trapped_chest","minecraft:ender_chest"],key_type:"minecraft:block"}
+      interact-block-only-when-hand-not-block: true
+      only-interact-interactable-block: true
+      render-target: false
+      render-target-color: nbt:wrapcolor:"red"
+interact-scaffold:
+  enable: false
+  hotkey: 'hotkey:'
+  legal-targeting: enum:legal_interact_mode:USEITEM_PACKET
+  air-place: false
+  delay: 1
+  offhand-enable: false
+  swap-hand: false
+  expand-interact-y-depth: 0
+  expand-interact-range: 1
+  ghost-hand-mode: enum:ghost_hand_mode:INV_SWAP
+  swing-hand: true
+  mul: 1
+  keep-y: false
+tp-interact:
+  enable: false
+  enable-hotkey: 'hotkey:'
+  mine-interact-use-fail-mine: false
+  try-tp-steal-chest-key: 'hotkey:'
+place-utils:
+  auto-surround:
+    enable: false
+    hotkey: 'hotkey:'
+    offhand-enable: false
+    delay: 1
+    multiply: 1
+    mode: enum:legal_interact_mode:DELAY_MOVEMENT
+    air-place: false
+    only-player-near: nbt:optionalprimitive:{present:0b,value:"double|10.0"}
+    lower: false
+    auto-attack-crystal: false
+    anti-packet-mine: false
+    only-ground: false
+    auto-center: false
+    auto-sneak: false
+    use-white-list: false
+    white-list: nbt:entryset:{data:["minecraft:obsidian"],key_type:"minecraft:item"}
+    only-blast-resistance: true
+    using-item-abort: false
+    ghost-hand-mode: enum:ghost_hand_mode:INV_SWAP
+    swing-hand: true
+    upper: false
+  auto-plate:
+    enable: false
+    hotkey: 'hotkey:'
+    mode: enum:legal_interact_mode:NONE
+    air-place: false
+    delay: 5
+    multiply: 1
+    expand-range: 2.0
+    interact-range: 5.0
+    fill-depth: 0
+    copy-state: true
+    use-block-rotate: false
+    ghost-hand-swap-back: false
+    swing-hand: true
+    render: false
+    render-color: nbt:wrapcolor:"#00FF00"
+  auto-slab:
+    enable: false
+    hotkey: 'hotkey:'
+    mode: enum:legal_interact_mode:NONE
+    air-place: false
+    delay: 5
+    multiply: 1
+    interact-range: 5.0
+    slab-only: false
+    use-block-entities: false
+    black-list-item: nbt:entryset:{data:["minecraft:chest","minecraft:ender_chest"],key_type:"minecraft:block"}
+    use-block-rotate: false
+    ghost-hand-swap-back: false
+    swing-hand: true
+    render: false
+    render-color: nbt:wrapcolor:"#00FF00"
+  self-trap:
+    enable: false
+    hotkey: 'hotkey:'
+    offhand: false
+    delay: 1
+    multiply: 1
+    mode: enum:legal_interact_mode:NONE
+    air-place: false
+    lower: false
+    only-ground: false
+    auto-sneak: false
+    use-white-list: false
+    white-list: nbt:entryset:{data:["minecraft:obsidian"],key_type:"minecraft:item"}
+    only-blast-resistance: true
+    using-item-abort: false
+    ghost-hand-mode: enum:ghost_hand_mode:INV_SWAP
+    swing-hand: true
+block-rotate:
+  enable: true
+  yaw-deceive-bypass-mode: enum:bypass_mode:NO_BYPASS
+  rotate-bypass-mode: enum:bypass_mode:NO_BYPASS
+  temporary-schematic:
+    enable: true
+    client-state-temp-fix: true
+  litematica-shit-fix:
+    enable: false
+    legal-look: false
+  litematica-printer-rewrite:
+    enable: false
+    hotkey: 'hotkey:'
+    mode: enum:legal_interact_mode:DELAY_MOVEMENT
+    air-place: false
+    delay: 5
+    multiply: 1
+    ghost-hand-swap-back: false
+    auto-sneak: true
+    support-water-place: true
+    use-ice-to-form-water: false
+    support-replace-block: true
+    swing-hand: true
+    range: 5.0
+    render: true
+    render-success-color: nbt:wrapcolor:"#00FF00"
+    render-fail-color: nbt:wrapcolor:"#FF0000"
+  simple-placement-correct:
+    enable: false

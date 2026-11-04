@@ -1,0 +1,49 @@
+module-settings:
+  hotkey-work-policy: enum:module_settings_hotkey_policy:ONLY_WHEN_NO_SCREEN
+  toggle-keys-stop-vanilla: true
+  module-toggle-notify: true
+  module-on-notify-format: nbt:stringformat:{arguments:["name"],color_str:1b,format:"&a&l[+]
+    &f{name}"}
+  module-off-notify-format: nbt:stringformat:{arguments:["name"],color_str:1b,format:"&c&l[-]
+    &f{name}"}
+  compress-module-toggle-message: false
+  module-log-message-format: nbt:stringformat:{arguments:["module_name","message"],color_str:1b,format:"&c[{module_name}]
+    &f{message}"}
+  module-command-prefix: '!!'
+hotkeys:
+  open-menu: hotkey:LEFT_CONTROL,G
+  open-options-menu: 'hotkey:'
+click-gui:
+  hotkey: hotkey:RIGHT_ALT
+  widget-size: nbt:vec2:{x:55.0d,y:12.0d}
+  gui-frame-style: nbt:wrapcolor:"#984FDB"
+  gui-background-style: nbt:wrapcolor:"#323232"
+  gui-background-alpha: 192
+  gui-config-style: nbt:wrapcolor:"#323232"
+  gui-config-label-alpha: 255
+  button-active-alpha: 216
+  button-inactive-alpha: 128
+  gui-text-style: nbt:wrapcolor:"white"
+  enable-config-subgroup: true
+config:
+  privacy-protection-path-keywords:
+  - chat
+  - http
+bind-command:
+  enable: true
+  hotkey: 'hotkey:'
+  commands: nbt:primitivepairlist:{data:[{first:"keybind|hotkey:",second:'stringformat|{arguments:["player","pos","x","y","z","world","pitch","yaw"],format:"/!!help"}'}],default_second_primitive:'stringformat|{arguments:["player","pos","x","y","z","world","pitch","yaw"],format:""}',first_name:"widget.bind-command.hotkey",first_type:"keybind",second_name:"widget.bind-command.command",second_type:"stringformat"}
+event-command:
+  enable: false
+  hotkey: 'hotkey:'
+  event-map: nbt:primitivepairlist:{data:[],default_first_primitive:'dispatchdata|{data:{JOIN_GAME:[],NONE:[],ONCE:[{key:"widget.event-command.key.delay",value:40},{key:"widget.event-command.key.totem-min",value:0},{key:"widget.event-command.key.totem-max",value:999},{key:"widget.event-command.key.pop-totem-min",value:0},{key:"widget.event-command.key.pop-totem-max",value:999},{key:"widget.event-command.key.self-health-min",value:0.0d},{key:"widget.event-command.key.self-health-max",value:999.0d}],OTHER_DEATH:[{key:"widget.event-command.key.totem-min",value:0},{key:"widget.event-command.key.totem-max",value:999},{key:"widget.event-command.key.pop-totem-min",value:0},{key:"widget.event-command.key.pop-totem-max",value:999},{key:"widget.event-command.key.target-only-enemy",value:0b}],OTHER_ENTER_VISUAL_RANGE:[{key:"widget.event-command.key.totem-min",value:0},{key:"widget.event-command.key.totem-max",value:999},{key:"widget.event-command.key.pop-totem-min",value:0},{key:"widget.event-command.key.pop-totem-max",value:999},{key:"widget.event-command.key.self-health-min",value:0.0d},{key:"widget.event-command.key.self-health-max",value:999.0d},{key:"widget.event-command.key.target-health-min",value:0.0d},{key:"widget.event-command.key.target-health-max",value:999.0d},{key:"widget.event-command.key.target-only-enemy",value:0b}],OTHER_LEAVE_VISUAL_RANGE:[{key:"widget.event-command.key.totem-min",value:0},{key:"widget.event-command.key.totem-max",value:999},{key:"widget.event-command.key.pop-totem-min",value:0},{key:"widget.event-command.key.pop-totem-max",value:999},{key:"widget.event-command.key.self-health-min",value:0.0d},{key:"widget.event-command.key.self-health-max",value:999.0d},{key:"widget.event-command.key.target-health-min",value:0.0d},{key:"widget.event-command.key.target-health-max",value:999.0d},{key:"widget.event-command.key.target-only-enemy",value:0b}],OTHER_TRIGGER_TOTEM:[{key:"widget.event-command.key.totem-min",value:0},{key:"widget.event-command.key.totem-max",value:999},{key:"widget.event-command.key.pop-totem-min",value:0},{key:"widget.event-command.key.pop-totem-max",value:999},{key:"widget.event-command.key.target-only-enemy",value:0b}],SELF_DEATH:[{key:"widget.event-command.key.totem-min",value:0},{key:"widget.event-command.key.totem-max",value:999},{key:"widget.event-command.key.pop-totem-min",value:0},{key:"widget.event-command.key.pop-totem-max",value:999}],SELF_TRIGGER_TOTEM:[{key:"widget.event-command.key.totem-min",value:0},{key:"widget.event-command.key.totem-max",value:999},{key:"widget.event-command.key.pop-totem-min",value:0},{key:"widget.event-command.key.pop-totem-max",value:999}],TICK:[{key:"widget.event-command.key.delay",value:40},{key:"widget.event-command.key.totem-min",value:0},{key:"widget.event-command.key.totem-max",value:999},{key:"widget.event-command.key.pop-totem-min",value:0},{key:"widget.event-command.key.pop-totem-max",value:999},{key:"widget.event-command.key.self-health-min",value:0.0d},{key:"widget.event-command.key.self-health-max",value:999.0d}],WORLD_CHANGE:[{key:"widget.event-command.key.totem-min",value:0},{key:"widget.event-command.key.totem-max",value:999},{key:"widget.event-command.key.self-health-min",value:0},{key:"widget.event-command.key.self-health-max",value:0}]},sample:"enum:event_command_event_type:NONE"}',default_second_primitive:'stringformat|{arguments:["player","pos","x","y","z","world","pitch","yaw","pop_cnt","target","target_x","target_y","target_z","target_pop_cnt"],format:""}',first_name:"widget.event-command.event-type",first_type:"dispatchdata",second_name:"widget.event-command.command",second_type:"stringformat"}
+world-storage:
+  enable-persistent-storage: true
+  enable-proxy-xaeromap-storage: false
+  enable-proxy-baritone-storage: false
+proxy-server:
+  enable: false
+iq-boost:
+  enable: false
+  hotkey: 'hotkey:'
+  boost-value: 114514

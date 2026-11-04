@@ -1,0 +1,444 @@
+attack:
+  att-range: 0.0
+  boat-reach-range: 0.0
+  shielding-setback-log: false
+  shielding-attack: false
+  riding-attack: false
+  cancel-interval: false
+  use-grim-expand-eye-height: false
+  whitelist: nbt:entitytyperegex:"^(monster|!endermite|player)$"
+  friends: nbt:regex:"^(.*NPC.*)$"
+  add-friend-hotkey: 'hotkey:'
+  send-on-add-friend: nbt:optionalprimitive:{present:0b,value:"string|/msg %s I have
+    just added you to my friends list!"}
+  att-friend: true
+  att-friend-hotkey: 'hotkey:'
+  att-named: true
+  att-teammate: true
+  att-hostile: true
+  att-invulnerable: false
+  opposite-attack-multiply: false
+  player-attack-multiply: 0.0
+  fake-player-and-npc-detect: false
+  attack-predict-argument: nbt:predictargument:{history:5,mode:"NO_PREDICT",ticks:2.0d}
+  fly-predict-argument: nbt:predictargument:{history:5,mode:"PREDICTOR_NV",ticks:2.0d}
+  spear-predict-argument: nbt:predictargument:{history:5,mode:"PREDICTOR_NV",ticks:2.0d}
+  debug-render-prediction: false
+  player-sync-position-peek: false
+  player-sync-position-render-color: nbt:wrapcolor:"#00FF00"
+att-bot:
+  exact-tp-anti-shield: false
+  place-recorder: false
+  place-recorder-hotkey: 'hotkey:'
+  always-att: false
+  always-att-hotkey: 'hotkey:'
+  legal-targeting: enum:legal_targeting_mode:DELAY_MOVEMENT
+  tp-reach: nbt:optionalprimitive:{present:1b,value:"double|0.0"}
+  mace-height-multiply: nbt:optionalprimitive:{present:0b,value:"double|30.0"}
+  exact-tp: false
+  use-delay-movement-pos-predict: false
+  attack-post-fix: true
+  auto-anti-shield: false
+  attack-inv-swap: false
+  attack-select-best-weapon: false
+  auto-handle-use-when-attack: false
+  mace-swap: nbt:optionalprimitive:{present:0b,value:"double|6.0"}
+  ghost-hand-mode: enum:ghost_hand_mode:INV_SWAP
+  swing-hand: true
+  render-target: false
+  render-target-color: nbt:wrapcolor:"green"
+  auto-att: false
+  auto-att-hotkey: 'hotkey:'
+  max-at-once: 1
+  respect-cooldown:
+    weapon: true
+    hand: true
+    packet-time: true
+    progress-threshold: 0.98
+    max-attack-interval: 50
+  auto-att-rate: 0
+  stop-attack-when-eat: false
+  stop-attack-when-spear: false
+  criticals:
+    enable: false
+    hotkey: 'hotkey:'
+    mode: enum:critical_mode:PACKET
+    ground-only: false
+    target-only: false
+    movement-ok-freeze: false
+    movement-ok-ground: false
+    auto-fake-ground-height: true
+    auto-walk-resync: true
+    set-back-mode: enum:setback_trigger_type:SIMULATION
+    delay-swap: false
+    in-wall-packet: false
+    in-air-freeze: true
+    in-wall-freeze: true
+    custom-in-wall-height: 0.05
+    custom-in-wall-packet-height: 0.05
+    critical-cooldown: 10
+  attack-redirect:
+    enable: false
+    hotkey: 'hotkey:'
+    render: false
+    render-color: nbt:wrapcolor:"green"
+bow-att:
+  bow-enhance: false
+  bow-enhance-hotkey: 'hotkey:'
+  aim-enable: false
+  tp-enable: false
+  targeting-mode: enum:legal_interact_mode:USEITEM_PACKET
+  tp-accelerate: 150.0
+  tp-accelerate-exact-tp: false
+  version-lower-than-121: false
+  render-target: false
+  bowtp-enable: false
+  bowtp-enable-hotkey: 'hotkey:'
+  bowtp-distance: 80.0
+  bowtp-target-distance: 80.0
+  bowtp-render-target: false
+  bowtp-start-delta-y: 0.0
+projectile:
+  projectile-enhance: false
+  projectile-enhance-hotkey: 'hotkey:'
+  aim-enable: false
+  tp-enable: false
+  targeting-mode: enum:legal_interact_mode:USEITEM_PACKET
+  tp-accelerate: 150.0
+  tp-accelerate-exact-tp: nbt:regex:"^(LOGITECH_LASER_GUN)$"
+  trident-auto-dupe: false
+combat-info:
+  combat-log:
+    enable: false
+    log-me-hit-other: false
+    log-other-hit-me: false
+    log-hit: false
+    log-hit-format: 'nbt:stringformat:{arguments:["attacker","target","damageType"],color_str:1b,format:"{attacker}
+      hit {target}, type: {damageType}"}'
+    log-smash: false
+    log-smash-format: nbt:stringformat:{arguments:["attacker","target"],color_str:1b,format:"{attacker}
+      smash {target}"}
+    log-kinetic: false
+    log-kinetic-format: nbt:stringformat:{arguments:["attacker","target"],color_str:1b,format:"{attacker}
+      spear {target}"}
+totem:
+  auto-totem: false
+  auto-totem-hotkey: 'hotkey:'
+  auto-totem-log: true
+  totem-swap-cooldown: 1
+  enable-hand-items: nbt:entryset:{data:[],key_type:"minecraft:item"}
+  anti-miss: false
+  log-totem: false
+  log-total-count: true
+  log-death: true
+  log-pop-count-format: nbt:stringformat:{arguments:["name","count"],color_str:1b,format:"{name}
+    has triggered {count} totems"}
+  log-death-format: nbt:stringformat:{arguments:["name","count"],color_str:1b,format:"{name}
+    died after trigger {count} totems"}
+  auto-totem-hotbar-slot: nbt:optionalprimitive:{present:0b,value:"int|0"}
+  main-hand-totem: true
+spear-module:
+  spear-auto-restart: false
+  render-kinetic-players: false
+  replace-via-spear-model: true
+  fix-old-version-spear: true
+  fix-old-version-spear-piercing: true
+  fix-old-version-spear-sound: true
+  render-kinetic-players-color: nbt:wrapcolor:"yellow"
+  reset-spear-speed-rot-enable: false
+  reset-spear-speed-rot-hotkey: 'hotkey:'
+  reset-spear-speed-auto: false
+  reset-spear-speed-only-combat: false
+  reset-spear-auto-focus-target: false
+  spear-attack-enable: true
+  spear-attack-hotkey: 'hotkey:'
+  spear-motion-simulation: 50.0
+  spear-max-tp: 100.0
+  render-target: false
+  spear-server-tick-delay: 2
+lag-utils:
+  blink:
+    enable: false
+    hotkey: 'hotkey:'
+    revert: 'hotkey:'
+    render: false
+    close-on-delay: false
+    close-delay: 50
+    auto-flush: false
+    auto-flush-period: 20
+    attack-behaviour: enum:blink_event_action:FLUSH
+    on-hurt-behaviour: enum:blink_event_action:NONE
+    on-velocity-behaviour: enum:blink_event_action:NONE
+    on-inventory-behaviour: enum:blink_event_action:NONE
+    on-totem-behaviour: enum:blink_event_action:NONE
+    on-enermy-near: enum:blink_event_action:NONE
+    enermy-near-range: 3.5
+    on-near-target: enum:blink_event_action:NONE
+    elytra-support: false
+  back-track:
+    enable: false
+    hotkey: 'hotkey:'
+    max-delay: 50.0
+    render-old: false
+    max-distance: 5.0
+    player-only: false
+combat-utils:
+  auto-throw:
+    ground-throw: false
+    ground-height: 0.5
+    ceiling-throw: false
+    ceiling-height: 0.5
+    fly-always: false
+    up-fly: false
+    avoid-enemies: false
+    avoid-enemies-distance: 1.5
+    using-item-abort: false
+    offhand: false
+    ghost-hand-mode: enum:ghost_hand_mode:INV_SWAP
+    swing-hand: true
+    xp-bottles:
+      enable: false
+      hotkey: 'hotkey:'
+      check-durability: false
+      start-fixing-durability: 100
+      stop-fixing-durability: 50
+      delay: 3
+      multiply: 8
+      auto-close: false
+    potions:
+      enable: false
+      hotkey: 'hotkey:'
+      keep-potion: nbt:entryset:{data:[],key_type:"minecraft:mob_effect"}
+  pearl-phase:
+    enable: false
+    hotkey: 'hotkey:'
+    enable-crawl: false
+    enable-stand: false
+    auto-crawl: false
+    auto-activate-range: 0.35
+    use-wasd-control: false
+    enable-jump-up: true
+  pearl-throw:
+    execute-throw: 'hotkey:'
+    pearl-trace-render: false
+    pearl-trace-render-hotkey: 'hotkey:'
+    color: nbt:wrapcolor:"#FFC800"
+    exact: false
+  pearl-fly:
+    ghost-hand-mode: enum:ghost_hand_mode:INV_SWAP
+    offhand: false
+    swing-hand: true
+  auto-city:
+    enable: false
+    hotkey: 'hotkey:'
+    burrow-first: true
+    head-target: false
+    down: false
+    surround: true
+    double-mine-all: false
+    double-mine-face: false
+    using-item-abort: false
+  crystal-aura:
+    enable: false
+    hotkey: 'hotkey:'
+    mode: enum:legal_interact_mode:NONE
+    range: 10
+    interact-range: 4.5
+    delay: 3
+    place-after-attack: true
+    using-item-abort: false
+    auto-base: true
+    offhand: false
+    air-place: false
+    zero-tick-base: false
+    base-value-reduce: 0.9
+    auto-fill:
+      enable: false
+      hotkey: 'hotkey:'
+      white-list: nbt:entryset:{data:["minecraft:glass","minecraft:oak_leaves"],key_type:"minecraft:item"}
+      fill-ignore-damage: false
+      fill-min-wait-time: 2
+      fill-max-wait-time: 4
+    auto-fill-hotkey: 'hotkey:'
+    fill-white-list: nbt:entryset:{data:["minecraft:glass","minecraft:oak_leaves"],key_type:"minecraft:item"}
+    fill-ignore-damage: false
+    self-final-damage-threshold: 4.0
+    target-damage-threshold: 16.0
+    damage-use-predictor: true
+    ghost-hand-mode: enum:ghost_hand_mode:INV_SWAP
+    notify-supply: true
+    swing-hand: true
+    obsidian-base:
+      enable: true
+      zero-tick-base: false
+      base-value-reduce: 0.9
+    auto-block:
+      enable: false
+      blocking-block: nbt:entryset:{data:["minecraft:obsidian"],key_type:"minecraft:item"}
+      block-reduce: 0.9
+      zero-tick: false
+      scaffold-block: false
+  auto-web:
+    enable: false
+    hotkey: 'hotkey:'
+    interact-range: 4.5
+    mode: enum:legal_interact_mode:NONE
+    air-place: false
+    self-web: false
+    self-web-only-slow: false
+    other-web: false
+    ceiling: false
+    offhand: false
+    notify-supply: true
+    using-item-abort: false
+    ghost-hand-mode: enum:ghost_hand_mode:INV_SWAP
+    swing-hand: true
+  anchor-aura:
+    enable: false
+    hotkey: 'hotkey:'
+    mode: enum:legal_interact_mode:NONE
+    air-place: false
+    range: 10
+    interact-range: 4.5
+    delay: 3
+    multiply: 1
+    using-item-abort: false
+    self-final-damage-threshold: 4.0
+    target-damage-threshold: 16.0
+    consider-all-terrain: false
+    packet-mine-bridge: false
+    packet-mine-bridge-hotkey: 'hotkey:'
+    zero-tick-place-supply: false
+    zero-tick-use: false
+    ghost-hand-mode: enum:ghost_hand_mode:INV_SWAP
+    notify-supply: false
+    swing-hand: true
+    bridge-packet-mine:
+      enable: false
+      hotkey: 'hotkey:'
+    auto-block:
+      enable: false
+      blocking-block: nbt:entryset:{data:["minecraft:obsidian"],key_type:"minecraft:item"}
+      block-reduce: 0.9
+      zero-tick: false
+  anti-replenish:
+    enable: false
+    hotkey: 'hotkey:'
+    search-range: 4.5
+    delay: 10
+    zero-tick: false
+    steal: false
+    steal-only-part: false
+    drop: false
+    auto-close: true
+    auto-mine: false
+    using-item-abort: false
+    drop-pitch: nbt:optionalprimitive:{present:0b,value:"double|89.0"}
+  anti-crystal:
+    enable: false
+    hotkey: 'hotkey:'
+    progress-percentage: 0.66
+    only-around-self: false
+    using-item-abort: false
+    ghost-hand-mode: enum:ghost_hand_mode:INV_SWAP
+    fireworks:
+      enable: false
+      hotkey: 'hotkey:'
+      each-level-effective: 10.0
+      only-ceiling: true
+      only-no-drop: true
+      no-drop-block-list: nbt:entryset:{data:["minecraft:lime_stained_glass_pane","minecraft:magenta_stained_glass_pane","minecraft:green_stained_glass","minecraft:flowering_azalea_leaves","minecraft:orange_stained_glass","minecraft:brown_stained_glass","minecraft:tinted_glass","minecraft:glass","minecraft:black_stained_glass_pane","minecraft:light_gray_stained_glass","minecraft:spruce_leaves","minecraft:white_stained_glass_pane","minecraft:light_blue_stained_glass_pane","minecraft:cyan_stained_glass","minecraft:glass_pane","minecraft:purple_stained_glass","minecraft:pink_stained_glass_pane","minecraft:cherry_leaves","minecraft:birch_leaves","minecraft:acacia_leaves","minecraft:dark_oak_leaves","minecraft:mangrove_leaves","minecraft:gray_stained_glass","minecraft:blue_stained_glass","minecraft:green_stained_glass_pane","minecraft:light_gray_stained_glass_pane","minecraft:white_stained_glass","minecraft:cyan_stained_glass_pane","minecraft:red_stained_glass","minecraft:magenta_stained_glass","minecraft:jungle_leaves","minecraft:pink_stained_glass","minecraft:yellow_stained_glass_pane","minecraft:azalea_leaves","minecraft:red_stained_glass_pane","minecraft:orange_stained_glass_pane","minecraft:oak_leaves","minecraft:gray_stained_glass_pane","minecraft:yellow_stained_glass","minecraft:light_blue_stained_glass","minecraft:brown_stained_glass_pane","minecraft:purple_stained_glass_pane","minecraft:blue_stained_glass_pane","minecraft:lime_stained_glass","minecraft:black_stained_glass"],key_type:"minecraft:block"}
+      fabricated-place: false
+    item-frame:
+      enable: false
+      hotkey: 'hotkey:'
+    bow:
+      enable: false
+      hotkey: 'hotkey:'
+      use-tick: 4
+      arrow-effective-ticks: 1150
+combat-bot:
+  elytra-bot:
+    enable: false
+    hotkey: 'hotkey:'
+    range: 80
+    mode: enum:elytra_bot_mode:FOLLOW
+    player-only: true
+    auto-control-elytra: false
+    dynamic-target: false
+    only-when-no-wasd: false
+    combat-range: 10.0
+    combat-spear-range: 11.0
+    follower-follow-friend: false
+    follow-on-ground-height-extra: nbt:optionalprimitive:{present:1b,value:"double|2.0"}
+    mace-pull-up-use-predictor: false
+    mace-use-predictor-to-judge-follow: false
+    log-spear-hit: false
+    spear-use-predictor: false
+    render: false
+    switch-hotkey: 'hotkey:'
+    mace-attack-settings:
+      mace-combat-use-extra-attack: true
+      mace-post-attack: false
+      mace-combat-consider-use: false
+      mace-fix: false
+      mace-pre-swap-delay: 2.0
+      mace-pre-swap-distance-per-tick: 2.0
+      mace-swap-min-delay: 6
+      mace-pre-swap-prediction: 0.5
+      mace-pre-swap-self-speed-prediction: nbt:labelvec2:{data:{x:0.0d,y:1.0d},x_label:"widget.elytra-bot.mace-fix.extra-bonus",y_label:"widget.elytra-bot.mace-fix.predict-multiply"}
+    mace-height-and-pull-up:
+      mace-height: 10.0
+      mace-height-ground: 10.0
+      mace-max-extra-pull-up-tick: 20
+      combat-mace-chase-follow-use-y-bias: false
+      combat-mace-chase-follow-use-y-bias-range: 15.0
+      combat-mace-chase-follow-use-y-bias-extra-height-per-block: 0.6
+      combat-smooth-flight-pullup: false
+      combat-smooth-flight-circle-extra-range: 1.0
+      combat-smooth-flight-dynamic-circle-extra-range: nbt:optionalprimitive:{present:0b,value:"vec3|{x:10.0d,y:0.3d,z:20.0d}"}
+      combat-smooth-flight-out-pull-ratio: 1.0
+      combat-smooth-flight-out-pull-ratio-enable-distance: 16.0
+      combat-smooth-flight-out-pull-ratio-use-horizontal-distance: false
+      combat-smooth-flight-pullup-attack: false
+      combat-smooth-flight-pull-attack-max-horizontal: 10.0
+      combat-smooth-flight-pull-attack-min-relative-y: 0.0
+      combat-smooth-flight-pull-attack-max-relative-y: 10.0
+      mace-use-predictor-to-judge-follow: false
+    mace-follow-and-attack:
+      mace-max-follow-height: 1.5
+      mace-y-level-lerp: 0.0
+      choose-down-target-distance: 3.0
+      follow-lerp-pos-when-low: false
+      follow-min-pitch-deg: 15.0
+      predict-line: false
+      start-predict-distance: 10.0
+      predict-ticks-per-distance: 0.5
+      max-prediction-ticks: 3.0
+      continue-pull-up-if-can-not-target-prediction: false
+      follow-anti-center: false
+      follow-on-ground-height-extra: nbt:optionalprimitive:{present:1b,value:"double|2.0"}
+    angle-optimizing-flight:
+      combat-angle-optimize-pullup: false
+      combat-angle-optimize-xz-pullup-out: true
+      combat-angle-optimize-xz-pullup-out-range: 30.0
+      combat-angle-optimize-xz-pullup-in: false
+      combat-angle-optimize-xz-pullup-in-range: 12.0
+      combat-angle-optimize-radical-pullup: false
+      combat-angle-optimize-radical-pull-up-optimize-range: nbt:optionalprimitive:{present:0b,value:"double|20.0"}
+      combat-angle-optimize-follow: false
+      combat-angle-optimize-range: nbt:labelvec3:{data:{x:4.0d,y:4.0d,z:4.0d},x_label:"widget.elytra-bot.angle.normal-flight",y_label:"widget.elytra-bot.angle.spear-flight",z_label:"widget.elytra-bot.angle.anti-spear-flight"}
+      combat-angle-optimize-follow-pitch-limit: nbt:optionalprimitive:{present:1b,value:"double|75.0"}
+      combat-angle-optimize-pullup-persistent-direction: nbt:optionalprimitive:{present:0b,value:"double|6.0"}
+    anti-spear-settings:
+      fly-anti-spear: nbt:optionalprimitive:{present:1b,value:"double|1.0"}
+      fly-anti-spear-range: 9.0
+      fly-anti-spear-when-pull-up: nbt:optionalprimitive:{present:0b,value:"double|1.0"}
+      fly-anti-spear-pull-up-range: 9.0
+      fly-anti-spear-disable-when-using-spear: false
+      fly-anti-spear-use-predictor-to-predict-hit: false
+      fly-anti-spear-pull-up-when-predict-hit: false
+      fly-anti-spear-revert-direction-when-predict-hit: false
+      fly-anti-spear-rotate-direction-when-predict-hit: false
+      fly-anti-spear-after-angle: true
+      fly-anti-spear-use-spear-reset-when-follow: false

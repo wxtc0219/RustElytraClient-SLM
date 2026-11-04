@@ -1,0 +1,15 @@
+allowInventory true
+allowWaterBucketFall false
+allowVines true
+allowParkour true
+blockReachDistance 4.5
+pathRenderLineWidthPixels 5.0
+antiCheatCompatibility false
+colorCurrentPath 255,0,0
+colorNextPath 255,0,255
+colorMostRecentConsidered 255,0,0
+colorGoalBox 0,255,0
+elytraFireworkSpeed 0.7
+elytraNetherSeed -7346913998703726680
+elytraTermsAccepted true
+slimePhysics false

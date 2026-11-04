@@ -1,0 +1,18 @@
+model-config:
+  enable-block-model-protect: false
+  enable-slimefun-cmd-override: true
+  enable-item-model-override: true
+texture-config:
+  enable: false
+  namespace-for-custom-textures:
+  - ae2
+  - infinityexpansion
+  - avaritia
+new-style-item:
+  enable-enchant-book: true
+  enable-new-style-item: false
+  enable-new-style-nbt: true
+slimefun-models:
+  path-pattern-for-slimefun-model:
+  - ^slimefunhelper:slimefunitem/.*$
+  - ^slimefunhelper:test/.*$
