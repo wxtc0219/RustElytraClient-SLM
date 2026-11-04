@@ -1,0 +1,400 @@
+diff -ru --strip-trailing-cr /c/Users/wxtc/Documents/deepseek-harness/default-workspace/research/rec1211src/src/main/java/dev/rstminecraft/RSTScr.java /c/Users/wxtc/Documents/deepseek-harness/default-workspace/research/REC-b1211/src/main/java/dev/rstminecraft/RSTScr.java
+--- /c/Users/wxtc/Documents/deepseek-harness/default-workspace/research/rec1211src/src/main/java/dev/rstminecraft/RSTScr.java	2026-04-30 16:32:29.000000000 +0800
++++ /c/Users/wxtc/Documents/deepseek-harness/default-workspace/research/REC-b1211/src/main/java/dev/rstminecraft/RSTScr.java	2026-11-04 20:07:19.968982500 +0800
+@@ -74,7 +74,7 @@
+     // 开始飞行菜单
+     private static class ciScr extends RSTSimpleScr {
+         // 3行一列
+-        private static final int ciButtonsRow = 5;
++        private static final int ciButtonsRow = 6;
+         private static final int ciButtonsCol = 1;
+         private @Nullable String x = null;
+         private @Nullable String z = null;
+@@ -158,6 +158,29 @@
+                         MsgSender.SendMsg(client.player, "任务开始！", MsgLevel.warning);
+                         TaskThread.StartModThread(TaskThread.TaskType.INFINITY_ELYTRA, getBoolean("isAutoLog", true), getBoolean("isAutoLogOnSeg1", false), x1, z1, client.player.getBlockPos());
+                         client.setScreen(null);
++                    }),
++                    new SrcButtonEntry("开始飞行(SLM甲飞接管)", "第4模式:用MagicBaritone把飞行物理替换为SlimefunHelper甲飞,不穿鞘翅、不掉鞘翅耐久(需安装MagicBaritone+SlimefunHelper)", () -> {
++                        int x1, z1;
++                        if (x == null || z == null) return;
++                        try {
++                            x1 = Integer.parseInt(x);
++                        } catch (NumberFormatException e) {
++                            return;
++                        }
++                        try {
++                            z1 = Integer.parseInt(z);
++                        } catch (NumberFormatException e) {
++                            return;
++                        }
++                        if (client == null || client.player == null) return;
++                        if (TaskThread.getModThread() != null) {
++                            if (TaskThread.getModThread().getState() == Thread.State.TERMINATED)
++                                MsgSender.SendMsg(client.player, "模组遇到线程状态错误，通常重启可解决！", MsgLevel.warning);
++                            return;
++                        }
++                        MsgSender.SendMsg(client.player, "任务开始！(SLM甲飞接管)", MsgLevel.warning);
++                        TaskThread.StartModThread(TaskThread.TaskType.SLM_TAKEOVER, getBoolean("isAutoLog", true), getBoolean("isAutoLogOnSeg1", false), x1, z1, client.player.getBlockPos());
++                        client.setScreen(null);
+                     })// 一个“开始飞行”按钮
+             };
+         }
+diff -ru --strip-trailing-cr /c/Users/wxtc/Documents/deepseek-harness/default-workspace/research/rec1211src/src/main/java/dev/rstminecraft/RustElytraClient.java /c/Users/wxtc/Documents/deepseek-harness/default-workspace/research/REC-b1211/src/main/java/dev/rstminecraft/RustElytraClient.java
+--- /c/Users/wxtc/Documents/deepseek-harness/default-workspace/research/rec1211src/src/main/java/dev/rstminecraft/RustElytraClient.java	2026-04-30 16:32:29.000000000 +0800
++++ /c/Users/wxtc/Documents/deepseek-harness/default-workspace/research/REC-b1211/src/main/java/dev/rstminecraft/RustElytraClient.java	2026-11-04 20:07:19.969979700 +0800
+@@ -95,6 +95,7 @@
+                 case ELYTRA -> sb.append("鞘翅模式");
+                 case EXP_BOTTLE -> sb.append("经验模式");
+                 case INFINITY_ELYTRA -> sb.append("无尽鞘翅模式");
++                case SLM_TAKEOVER -> sb.append("SLM甲飞接管");
+             }
+             sb.append(",");
+             switch (TaskThread.getTaskStatus()) {
+diff -ru --strip-trailing-cr /c/Users/wxtc/Documents/deepseek-harness/default-workspace/research/rec1211src/src/main/java/dev/rstminecraft/RustElytraTask.java /c/Users/wxtc/Documents/deepseek-harness/default-workspace/research/REC-b1211/src/main/java/dev/rstminecraft/RustElytraTask.java
+--- /c/Users/wxtc/Documents/deepseek-harness/default-workspace/research/rec1211src/src/main/java/dev/rstminecraft/RustElytraTask.java	2026-04-30 16:32:29.000000000 +0800
++++ /c/Users/wxtc/Documents/deepseek-harness/default-workspace/research/REC-b1211/src/main/java/dev/rstminecraft/RustElytraTask.java	2026-11-04 20:07:19.970956800 +0800
+@@ -55,6 +55,8 @@
+     private static @Nullable BlockPos LastPos;
+     private static boolean noFirework = false;
+     private static boolean noElytra = false;
++    /** ★SLM 甲飞接管：起飞失败计数（连续失败 3 次就改用烟花起飞） */
++    private static int slmTakeoffFails = 0;
+     private static @Nullable BlockPos oldPos = null;
+     private static int spinTimes = 0;
+     private static boolean waitReset = false;
+@@ -69,6 +71,7 @@
+         arrived = false;
+         noElytra = false;
+         jumpingCounter.clear();
++        slmTakeoffFails = 0;
+         baritoneControlCounter.clear();
+         FallingCounter.clear();
+         SegFailedCounter.clear();
+@@ -416,6 +419,10 @@
+ 
+     private static void elytraTakeoff(@NotNull MinecraftClient client) {
+         if (client.player == null) throw new TaskException("null");
++        if (isSlm()) {
++            slmElytraTakeoff(client);
++            return;
++        }
+         client.player.setPitch(-30);
+ 
+         client.options.jumpKey.setPressed(true);
+@@ -431,6 +438,29 @@
+         client.options.jumpKey.setPressed(false);
+     }
+ 
++    /**
++     * ★SLM 甲飞接管模式起飞：按住空格起跳，再在空中补按一次，让 SlimefunHelper 甲飞/滑翔生效；
++     * 多试几次，因为服务器卡顿/反作弊回弹可能吃掉其中一次按键。
++     */
++    private static void slmElytraTakeoff(@NotNull MinecraftClient client) {
++        if (client.player == null) throw new TaskException("null");
++        client.player.setPitch(-20);
++        for (int attempt = 0; attempt < 3; attempt++) {
++            client.options.jumpKey.setPressed(true);
++            delay(2);
++            if (client.player == null) return;
++            client.options.jumpKey.setPressed(false);
++            delay(1);
++            client.options.jumpKey.setPressed(true);
++            delay(1);
++            client.options.jumpKey.setPressed(false);
++            for (int i = 0; i < 6; i++) {
++                if (client.player == null || client.player.isFallFlying()) return;
++                delay(1);
++            }
++        }
++    }
++
+     private static @NotNull Vec3d getLookVec(float yaw, float pitch) {
+         float f = pitch * ((float) Math.PI / 180F);
+         float g = -yaw * ((float) Math.PI / 180F);
+@@ -601,19 +631,37 @@
+ 
+                     List<BlockPos> bp = RunAsMainThread(() -> getPotentialJumpBlockingBlocks(1));
+                     if (!bp.isEmpty()) clearBlockingBlock(client, x, z, bp);
+-                    MsgSender.SendMsg(client.player, "自动起跳：" + jumpingCounter.getCount(), MsgLevel.warning);
+-                    if (jumpingCounter.getCount() <= 3) {
+-                        elytraTakeoff(client);
+-                        for (int i = 0; i < 40; i++) {
+-                            if (BaritoneControlChecker.isControlPlayer() || client.player.isOnGround()) break;
+-                            delay(1);
++                    if (isSlm()) {
++                        // ★SLM 甲飞接管：原生 jumpingCounter 是 100 tick 滑动窗口，
++                        //   起飞失败时窗口会漏空，导致要卡 5 分钟才走烟花起飞。这里改成持久计数。
++                        MsgSender.SendMsg(client.player, "SLM自动起跳：" + slmTakeoffFails, MsgLevel.warning);
++                        if (slmTakeoffFails < 3) {
++                            elytraTakeoff(client);
++                            for (int i = 0; i < 40; i++) {
++                                if (BaritoneControlChecker.isControlPlayer() || !client.player.isOnGround()) break;
++                                delay(1);
++                            }
++                            if (client.player.isFallFlying() || !client.player.isOnGround()) slmTakeoffFails = 0;
++                            else slmTakeoffFails++;
++                        } else {
++                            slmTakeoffFails = 0;
++                            flyToOpen(client, x, z);
+                         }
+-
+                     } else {
+-                        flyToOpen(client, x, z);
+-                    }
++                        MsgSender.SendMsg(client.player, "自动起跳：" + jumpingCounter.getCount(), MsgLevel.warning);
++                        if (jumpingCounter.getCount() <= 3) {
++                            elytraTakeoff(client);
++                            for (int i = 0; i < 40; i++) {
++                                if (BaritoneControlChecker.isControlPlayer() || client.player.isOnGround()) break;
++                                delay(1);
++                            }
+ 
+-                    jumpingCounter.accumulate();
++                        } else {
++                            flyToOpen(client, x, z);
++                        }
++
++                        jumpingCounter.accumulate();
++                    }
+                 }
+             }
+         }
+@@ -874,7 +922,7 @@
+         // 设置baritone
+         BaritoneAPI.getSettings().elytraAutoJump.value = false;
+         BaritoneAPI.getSettings().elytraFireworkSpeed.value = 0.5;
+-        if (type == INFINITY_ELYTRA) BaritoneAPI.getSettings().elytraAllowEmergencyLand.value = false;
++        if (type == INFINITY_ELYTRA || type == SLM_TAKEOVER) BaritoneAPI.getSettings().elytraAllowEmergencyLand.value = false;
+         BaritoneAPI.getSettings().logger.value = (var1x -> {
+             try {
+                 MessageIndicator var2 = BaritoneAPI.getSettings().useMessageTag.value ? Helper.MESSAGE_TAG : null;
+diff -ru --strip-trailing-cr /c/Users/wxtc/Documents/deepseek-harness/default-workspace/research/rec1211src/src/main/java/dev/rstminecraft/RustSupplyTask.java /c/Users/wxtc/Documents/deepseek-harness/default-workspace/research/REC-b1211/src/main/java/dev/rstminecraft/RustSupplyTask.java
+--- /c/Users/wxtc/Documents/deepseek-harness/default-workspace/research/rec1211src/src/main/java/dev/rstminecraft/RustSupplyTask.java	2026-04-30 16:32:29.000000000 +0800
++++ /c/Users/wxtc/Documents/deepseek-harness/default-workspace/research/REC-b1211/src/main/java/dev/rstminecraft/RustSupplyTask.java	2026-11-04 20:07:19.971481300 +0800
+@@ -32,6 +32,7 @@
+ import net.minecraft.util.collection.DefaultedList;
+ import net.minecraft.util.hit.BlockHitResult;
+ import net.minecraft.util.math.BlockPos;
++import net.minecraft.util.math.MathHelper;
+ import net.minecraft.util.math.Direction;
+ import net.minecraft.util.math.Vec3d;
+ import net.minecraft.world.World;
+@@ -261,7 +262,8 @@
+             if (!pickaxe)
+                 throw new TaskThread.TaskException("物资不足：需要有一把 经验修补吧 耐久3 效率4或效率5 的钻石或合金镐！");
+             if (!sword) throw new TaskThread.TaskException("物资不足：需要有一把的钻石或合金剑（不要求附魔）！");
+-            if (!elytra) throw new TaskThread.TaskException("物资不足：需要穿戴 耐久3 经验修补的鞘翅！");
++            if (!elytra && !TaskThread.isSlm())
++                throw new TaskThread.TaskException("物资不足：需要穿戴 耐久3 经验修补的鞘翅！");
+             if (FoodCount <= 15)
+                 throw new TaskThread.TaskException("物资不足：需要至少16个" + Food.getName().getString() + "!");
+ 
+@@ -415,13 +417,37 @@
+      * @param ContainerName 目标容器名
+      * @return 返回目标屏幕信息(handled, handler, screen)
+      */
++
++    /** ★容器标题宽松匹配：去掉 § 颜色符号和空格，双向包含（兼容服务器给容器名加前后缀） */
++    private static boolean containerNameMatches(@Nullable String title, @Nullable String want) {
++        String a = normalizeContainerName(title);
++        String b = normalizeContainerName(want);
++        if (a.isEmpty() || b.isEmpty()) return true;
++        return a.contains(b) || b.contains(a);
++    }
++
++    private static String normalizeContainerName(@Nullable String s) {
++        if (s == null) return "";
++        StringBuilder sb = new StringBuilder();
++        for (int i = 0; i < s.length(); i++) {
++            char c = s.charAt(i);
++            if (c == '\u00a7') {
++                i++;
++                continue;
++            }
++            if (c < 32 || c == ' ') continue;
++            sb.append(Character.toLowerCase(c));
++        }
++        return sb.toString();
++    }
++
+     private static @Nullable HandledScreen<?> ContainerScreenChecker(@NotNull MinecraftClient client, @NotNull String ContainerName) {
+         Screen screen = client.currentScreen;
+         // 不是容器界面
+         if (!(screen instanceof HandledScreen<?> handled)) return null;
+ 
+-        // 不是目标容器
+-        if (!ContainerName.equalsIgnoreCase(handled.getTitle().getString())) return null;
++        // 不是目标容器（★宽松匹配：去颜色符号/空格，双向包含）
++        if (!containerNameMatches(handled.getTitle().getString(), ContainerName)) return null;
+ 
+         ScreenHandler handler = handled.getScreenHandler();
+         int totalSlots = handler.slots.size();
+@@ -682,49 +708,75 @@
+      */
+     private static void mineSupplyShulker(@NotNull MinecraftClient client, BlockPos ShulkerPos) {
+         if (client.player == null) throw new TaskThread.TaskException("Player为null");
+-        int count = 0;
+         PlayerInventory inventory = client.player.getInventory();
+-        for (int i = 0; i < inventory.main.size(); i++) {
+-            ItemStack stack = inventory.main.get(i);
+-            Item item = stack.getItem();
+-            if (item instanceof BlockItem && ((BlockItem) item).getBlock() instanceof ShulkerBoxBlock) {
+-                count += stack.getCount();
+-            }
+-        }
++        int count = countShulkerInInventory(inventory);
+         if (client.world == null) throw new TaskThread.TaskException("世界异常");
+-        // 调用BaritoneAPI挖掉用过的补给盒
+-        int targetCount = count + 1;
++        final int targetCount = count + 1;
++        final BlockPos pos = ShulkerPos;
++
++        // ★先关掉潜影盒界面：界面开着时玩家无法攻击方块/移动，baritone 的挖掘会永远结束不了
++        RunAsMainThread(() -> client.setScreen(null));
++        TaskThread.delay(2);
++
++        // 用 baritone 挖掉用过的补给盒
+         RunAsMainThread(() -> {
+-            Block block = client.world.getBlockState(ShulkerPos).getBlock();
++            Block block = client.world.getBlockState(pos).getBlock();
+             BaritoneAPI.getProvider().getPrimaryBaritone().getMineProcess().mine(targetCount, block);
+         });
+-        // 等待baritone挖掘
+-        for (int i = 0; i < 40; i++) {
++
++        // 等待 baritone 挖掘（★原版只等 40 tick = 2 秒，服务器回弹/卡顿必炸，这里放宽到 30 秒）
++        for (int i = 0; i < 600; i++) {
+             if (isHittingFireball()) i = 0;
+             if (!BaritoneAPI.getProvider().getPrimaryBaritone().getMineProcess().isActive()) break;
+-            if (i == 39) {
+-                RunAsMainThread(() -> BaritoneAPI.getProvider().getPrimaryBaritone().getMineProcess().cancel());
+-                throw new TaskThread.TaskException("挖掘异常？取消挖掘");
+-            }
++            TaskThread.delay(1);
++        }
++        if (BaritoneAPI.getProvider().getPrimaryBaritone().getMineProcess().isActive()) {
++            RunAsMainThread(() -> BaritoneAPI.getProvider().getPrimaryBaritone().getMineProcess().cancel());
++        }
++
++        // ★兜底：block 还在就自己动手挖（方块是自己放的，就在交互距离内）
++        for (int i = 0; i < 200; i++) {
++            if (client.world == null || client.player == null) throw new TaskThread.TaskException("世界异常");
++            if (client.world.getBlockState(pos).isAir()) break;
++            if (i == 199) throw new TaskThread.TaskException("挖掘补给箱超时");
++            RunAsMainThread(() -> {
++                if (client.interactionManager == null || client.player == null) return;
++                Vec3d target = Vec3d.ofCenter(pos);
++                Vec3d eye = client.player.getEyePos();
++                Vec3d dir = target.subtract(eye);
++                double horiz = Math.sqrt(dir.x * dir.x + dir.z * dir.z);
++                float yaw = (float) (MathHelper.atan2(dir.z, dir.x) * 180.0 / Math.PI) - 90.0f;
++                float pitch = (float) (-(MathHelper.atan2(dir.y, horiz) * 180.0 / Math.PI));
++                client.player.setYaw(yaw);
++                client.player.setPitch(pitch);
++                Direction side = Direction.getFacing(eye.x - target.x, eye.y - target.y, eye.z - target.z);
++                client.interactionManager.updateBlockBreakingProgress(pos, side);
++                client.player.swingHand(Hand.MAIN_HAND);
++            });
+             TaskThread.delay(1);
+         }
+ 
+         // 等待捡起潜影盒
+-        for (int j = 0; j < 10; j++) {
+-            int newCount = 0;
+-            for (int i = 0; i < inventory.main.size(); i++) {
+-                ItemStack stack = inventory.main.get(i);
+-                Item item = stack.getItem();
+-                if (item instanceof BlockItem && ((BlockItem) item).getBlock() instanceof ShulkerBoxBlock) {
+-                    newCount += stack.getCount();
+-                }
+-            }
+-            if (newCount >= targetCount) break;
+-            if (j == 9) throw new TaskThread.TaskException("挖掘补给箱失败!");
++        for (int j = 0; j < 60; j++) {
++            if (countShulkerInInventory(inventory) >= targetCount) break;
++            if (j == 59) throw new TaskThread.TaskException("挖掘补给箱失败!");
+             TaskThread.delay(1);
+         }
+     }
+ 
++    /** 统计背包里的潜影盒数量（所有颜色都算） */
++    private static int countShulkerInInventory(@NotNull PlayerInventory inventory) {
++        int count = 0;
++        for (int i = 0; i < inventory.main.size(); i++) {
++            ItemStack stack = inventory.main.get(i);
++            Item item = stack.getItem();
++            if (item instanceof BlockItem && ((BlockItem) item).getBlock() instanceof ShulkerBoxBlock) {
++                count += stack.getCount();
++            }
++        }
++        return count;
++    }
++
+     /**
+      * 挖掘末影箱
+      *
+@@ -765,7 +817,7 @@
+         HandledScreen<?> handled = null;
+ 
+         // 等待界面
+-        for (int i = 0; i < 20; i++) {
++        for (int i = 0; i < 120; i++) {   // ★原版只等 20 tick，服务器卡顿时必失败
+             HandledScreen<?> temp = ContainerScreenChecker(client, ScreenName);
+             if (temp != null) {
+                 handled = temp;
+@@ -897,6 +949,7 @@
+                 ElytraInNeed = (int) Math.ceil(Math.max(3 * 64 - ElytraSupplyChecker(client, true), 0) / 64.0);
+             }
+             case INFINITY_ELYTRA -> FireworkInNeed = (int) Math.floor(Math.max(26 * 64 - FireworkSupplyChecker(client), 0) / 64.0);
++            case SLM_TAKEOVER -> FireworkInNeed = (int) Math.floor(Math.max(26 * 64 - FireworkSupplyChecker(client), 0) / 64.0);
+         }
+ 
+         boolean hasTotem = client.player.getInventory().getStack(3).getItem() == Items.TOTEM_OF_UNDYING || client.player.getInventory().getStack(4).getItem() != Items.TOTEM_OF_UNDYING;
+@@ -956,6 +1009,12 @@
+                             continue;
+                         }
+                     }
++                    case SLM_TAKEOVER -> {
++                        if(m < 26){
++                            m++;
++                            continue;
++                        }
++                    }
+                 }
+                 replaceSlot.add(i);
+             } else if (s.getItem() == Items.EXPERIENCE_BOTTLE && type == TaskType.EXP_BOTTLE) {
+@@ -982,7 +1041,7 @@
+                 }
+             }
+             if (slot2 == -1)
+-                throw new TaskThread.TaskException("无可用" + Food.getName().getString() + "!");
++                MsgSender.SendMsg(client.player, "末影箱里没有" + Food.getName().getString() + "，先用身上现有的食物继续", MsgLevel.warning);
+             else ShulkerList.add(slot2);
+         }
+         if (client.player.getInventory().getStack(4).getItem() != Items.TOTEM_OF_UNDYING) {
+diff -ru --strip-trailing-cr /c/Users/wxtc/Documents/deepseek-harness/default-workspace/research/rec1211src/src/main/java/dev/rstminecraft/TaskThread.java /c/Users/wxtc/Documents/deepseek-harness/default-workspace/research/REC-b1211/src/main/java/dev/rstminecraft/TaskThread.java
+--- /c/Users/wxtc/Documents/deepseek-harness/default-workspace/research/rec1211src/src/main/java/dev/rstminecraft/TaskThread.java	2026-04-30 16:32:29.000000000 +0800
++++ /c/Users/wxtc/Documents/deepseek-harness/default-workspace/research/REC-b1211/src/main/java/dev/rstminecraft/TaskThread.java	2026-11-04 20:07:19.968982500 +0800
+@@ -60,6 +60,12 @@
+         return ModThread;
+     }
+ 
++    /** 当前任务是否为第 4 个模式「SLM 甲飞接管」 */
++    public static boolean isSlm() {
++        TaskThread t = ModThread;
++        return t != null && t.type == TaskType.SLM_TAKEOVER;
++    }
++
+     /**
+      * 返回模组线程是否在运行，即Mod是否在工作
+      *
+@@ -347,7 +353,7 @@
+     }
+ 
+     public enum TaskType {
+-        EXP_BOTTLE, ELYTRA, INFINITY_ELYTRA
++        EXP_BOTTLE, ELYTRA, INFINITY_ELYTRA, SLM_TAKEOVER
+     }
+ 
+     public enum TaskStatus{
