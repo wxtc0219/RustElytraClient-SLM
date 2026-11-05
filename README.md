@@ -6,6 +6,8 @@
 > 支持 **Minecraft 1.21.1 / 1.21.4 / 1.21.11** 三个主流版本。
 >
 > ⚠️ 非官方补丁，与模组原作者无关。基于 GPL-3.0 发布，见 [LICENSE](LICENSE)。
+>
+> 🎬 演示视频【Slime甲飞+RustElytra 全自动不消耗鞘翅耐久跑图】 https://www.bilibili.com/video/BV1JwxR6DEun/
 
 ---
 

@@ -22,6 +22,11 @@ python tools/patch_rec_slm.py rec1211
 python tools/patch_rec_slm.py rec1214
 python tools/patch_rec_slm.py rec1218
 
+# v1.0.0-r2 稳定性热修（食物阈值 / 放置点兜底 / 手动挖掘兜底）
+python tools/patch_rec_fix2.py rec1211
+python tools/patch_rec_fix2.py rec1214
+python tools/patch_rec_fix2.py rec1218   # 1.21.11 移植版对应源码树
+
 # 1.21.11 额外：把 rec1218 的 gradle.properties/build.gradle 改成
 #   minecraft_version=1.21.11
 #   yarn mappings 1.21.11+build.6
@@ -30,7 +35,7 @@ python tools/patch_rec_slm.py rec1218
 #   fabric_version=0.140.0+1.21.11
 #   modCompileOnly meteordevelopment:baritone:1.21.11-SNAPSHOT
 # 并按 patches/rec/1.21.11-slm-takeover.diff 里的 API 适配部分修正（getEntityPos / KeyBinding.Category /
-# PlayerInventory.getStack / TrajectoryRenderer 空实现）
+# PlayerInventory.getStack / selectedSlot→setSelectedSlot / TrajectoryRenderer 空实现）
 
 cd rec1211 && ./gradlew build -x test
 # 产物：build/libs/1.21.1/RustElytraClient-1.21.1-beta1.6-<时间戳>.jar
