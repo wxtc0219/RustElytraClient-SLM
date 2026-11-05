@@ -161,7 +161,43 @@
 
 ---
 
-## 5. 目录结构
+## 5. 怎么改 SLM 参数
+
+甲飞的参数全在 **SlimefunHelper** 里，不在 REC 里。文件位置：`.minecraft/slimefunhelper/runtime/*.yml`，
+甲飞本体是 `mov.yml`（其它 yml 是飞行、防摔、防液体、疾跑等模块）。**1.1.7.2 以前的旧版路径是
+`config/sfhelper-configs/`，放错不生效。**
+
+三种改法，任选一种：
+
+| 方式 | 怎么做 | 适合 |
+| --- | --- | --- |
+| 改文件 | 改 `slimefunhelper/runtime/mov.yml` 里的值 → 游戏内 `!!config reload` | 一次改一堆、想留档 |
+| 命令 | `!!config set mov elytra.armor-fly.force-no-elytra true` → `!!config reload` | 试一两个值 |
+| GUI | `!!config open`，逐项点着改 | 不熟参数名 |
+
+> 命令一定要带 `!!`，`mov` 是文件名（不带 `.yml`）。
+
+常用几个（值和本包推荐设置一致）：
+
+| 参数 | 本包值 | 改了会怎样 |
+| --- | --- | --- |
+| `elytra.armor-fly.force-no-elytra` | true | **别关**。关了一直穿鞘翅飞、掉耐久 |
+| `elytra.armor-fly.enable-hotkey` | Z | 甲飞开关热键 |
+| `elytra.simple-flight-control.motion-mode` | FIRE_WORKS | 改成 `VOID` 是发包动力，不用烟花但更容易被反作弊盯 |
+| `elytra.simple-flight-control.motion-lerp-argument` | 1.0 | 调小转向更平滑，但会更飘 |
+| `elytra.simple-flight-control.auto-fly` | false | 卡住自救可以开，平时别开 |
+| `elytra.custom-fireworks.firework-delay-multiply-vanilla` | 40 | 越大烟花越省，太大容易掉速 |
+| `elytra.custom-fireworks.motion-amount` | 1.7 | 单发烟花推进力度 |
+
+改完按 **Z** 看聊天栏：出现 `[+] 鞘翅甲飞`、`[+] 简易鞘翅控制` 就是生效了。
+
+- 完整参数表（`mov.yml` 全部 18 个模块 + baritone + REC 配置）：[`docs/SLM参数全表.md`](docs/SLM参数全表.md)
+- 每个关键值的解释：[`docs/史莱姆参数说明.md`](docs/史莱姆参数说明.md)
+
+**注意 REC 自己的参数不在这里**：`config/RSTConfig.json` 里有 `FoodIndex`（食物种类索引，本包 4 = 熟猪排）、
+`elytraFireworkSpeed`（本包 1.2）等；`baritone/settings.txt` 的 `slimePhysics false` 是 MagicBaritone 的甲飞接管开关，不能删。
+
+## 6. 目录结构
 
 ```
 RustElytraClient-SLM/
@@ -180,7 +216,7 @@ RustElytraClient-SLM/
 
 ---
 
-## 6. 许可证与致谢
+## 7. 许可证与致谢
 
 - 本项目是 **RustElytraClient** 的衍生作品，原项目：
   <https://github.com/RSTminecraft/RustElytraClient>，许可证 **GPL-3.0**（完整 LICENSE 见根目录）。
